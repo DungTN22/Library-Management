@@ -10,16 +10,22 @@ import java.sql.Statement;
 public class Database {
 
     // Thông tin kết nối cơ sở dữ liệu MySQL
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/library_mng"; // Đảm bảo rằng cơ sở dữ liệu library_mng đã được tạo
-    private static final String DB_USER = "root";    // Thay đổi nếu tên người dùng khác
-    private static final String DB_PASSWORD = "password"; // Thay đổi nếu mật khẩu khác
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management?useSSL=false&serverTimezone=UTC";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "Cuong2005@";
 
     // Khởi tạo kết nối
     public static Connection connect() {
         Connection connection = null;
         try {
+            // Đăng ký MySQL JDBC Driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Tạo kết nối
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             System.out.println("Kết nối MySQL thành công!");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Không tìm thấy Driver MySQL: " + e.getMessage());
         } catch (SQLException e) {
             System.err.println("Kết nối MySQL thất bại: " + e.getMessage());
         }
@@ -61,13 +67,17 @@ public class Database {
                 + "FOREIGN KEY (book_id) REFERENCES books(book_id)"
                 + ")";
 
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement()) {
-
-            stmt.execute(createBooksTable);
-            stmt.execute(createUsersTable);
-            stmt.execute(createBorrowedBooksTable);
-            System.out.println("Các bảng đã được tạo hoặc đã tồn tại.");
+        try (Connection conn = connect()) {
+            if (conn != null) {
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.execute(createBooksTable);
+                    stmt.execute(createUsersTable);
+                    stmt.execute(createBorrowedBooksTable);
+                    System.out.println("Các bảng đã được tạo hoặc đã tồn tại.");
+                }
+            } else {
+                System.err.println("Kết nối không thành công. Không thể tạo bảng.");
+            }
         } catch (SQLException e) {
             System.err.println("Lỗi khi tạo bảng: " + e.getMessage());
         }
