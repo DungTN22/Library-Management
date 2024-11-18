@@ -1,5 +1,7 @@
 package org.example.librarymanagement1.backend;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -10,9 +12,10 @@ import java.sql.Statement;
 public class Database {
 
     // Thông tin kết nối cơ sở dữ liệu MySQL
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management?useSSL=false&serverTimezone=UTC";
+        private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management";
+    private static final Dotenv dotenv = Dotenv.load();
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Cuong2005@";
+    private static final String DB_PASSWORD = dotenv.get("Db_pw");
 
     // Khởi tạo kết nối
     public static Connection connect() {

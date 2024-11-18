@@ -44,6 +44,46 @@ public class BookService {
         return books;
     }
 
+    // Phương thức lấy sách hay dựa trên xếp hạng (rating).
+    public List<Book> getTopRatedBooks(int topN) {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books ORDER BY rating DESC LIMIT ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, topN);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                books.add(mapResultSetToBook(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy sách hay: " + e.getMessage());
+        }
+        return books;
+    }
+
+    // Phương thức lấy sách phổ biến dựa trên độ phổ biến (popularity).
+    public List<Book> getMostPopularBooks(int topN) {
+        List<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books ORDER BY popularity DESC LIMIT ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, topN);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                books.add(mapResultSetToBook(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy sách phổ biến: " + e.getMessage());
+        }
+        return books;
+    }
+
     // Phương thức thêm sách mới vào cơ sở dữ liệu
     public boolean addBook(Book book) {
         String query = "INSERT INTO books (title, author, genre, year, pages, available, image_link, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

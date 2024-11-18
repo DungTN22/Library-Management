@@ -25,6 +25,11 @@
       <version>22.0.1</version>
     </dependency>
 
+    <dependency>
+      <groupId>io.github.cdimascio</groupId>
+      <artifactId>dotenv-java</artifactId>
+      <version>3.0.0</version>
+    </dependency>
 
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -38,6 +43,7 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>  </dependencies>
+
 
   <build>
     <plugins>
