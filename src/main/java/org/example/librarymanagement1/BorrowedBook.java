@@ -4,18 +4,16 @@ import java.util.Date;
 
 public class BorrowedBook {
     private Date borrowDate;
-    private Date returnDate;
-    private String status;
-    private int userId;
-    private int bookId;
+    private String account;
+    private String bookName;
+    private String username;
 
     // Constructor
-    public BorrowedBook(Date borrowDate, Date returnDate, String status, int userId, int bookId) {
+    public BorrowedBook(Date borrowDate, String account, String bookName, String username) {
         this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
-        this.status = status;
-        this.userId = userId;
-        this.bookId = bookId;
+        this.account = account;
+        this.bookName = bookName;
+        this.username = username;
     }
 
     // Getters and Setters
@@ -23,19 +21,31 @@ public class BorrowedBook {
         return borrowDate;
     }
 
-    public Date getReturnDate() {
-        return returnDate;
+    public void setBorrowDate(Date borrowDate) {
+        this.borrowDate = borrowDate;
     }
 
-    public String getStatus() {
-        return status;
+    public String getAccount() {
+        return account;
     }
 
-    public int getUserId() {
-        return userId;
+    public void setAccount(String account) {
+        this.account = account;
     }
 
-    public int getBookId() {
-        return bookId;
+    public String getBookName() {
+        return bookName;
+    }
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

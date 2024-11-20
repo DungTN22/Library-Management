@@ -1,6 +1,7 @@
 package org.example.librarymanagement1.backend;
 
 import org.example.librarymanagement1.Book;
+import org.example.librarymanagement1.BorrowedBook;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class BookService {
         return books;
     }
 
-    // Phương thức lấy sách hay dựa trên xếp hạng (rating).
+    // Phương thức lấy sách hay dựa trên xếp hạng (rating). (topN là so luong ma ban muon no in ra nhe )
     public List<Book> getTopRatedBooks(int topN) {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY rating DESC LIMIT ?";
@@ -157,7 +158,7 @@ public class BookService {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                book = mapResultSetToBook(rs);  // Phương thức ánh xạ kết quả vào đối tượng Book
+                book = mapResultSetToBook(rs);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -179,59 +180,137 @@ public class BookService {
         );
     }
 
+
     // Phương thức mượn sách
-    public boolean borrowBook(int userId, int bookId) {
-        // Kiểm tra tính khả dụng của sách
-        String checkAvailabilityQuery = "SELECT available FROM books WHERE book_id = ?";
-        boolean isAvailable = false;
+    public boolean borrowBook(String account, String bookName) {
+        // Kiểm tra số lượng sách còn lại
+        String checkAvailabilityQuery = "SELECT available FROM books WHERE book_name = ?";
+        int availableBooks = 0;
 
         try (Connection conn = Database.connect();
              PreparedStatement pstmt = conn.prepareStatement(checkAvailabilityQuery)) {
 
-            pstmt.setInt(1, bookId);
+            pstmt.setString(1, bookName);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                isAvailable = rs.getBoolean("available");
+                availableBooks = rs.getInt("available");
+            } else {
+                System.out.println("Sách không tồn tại.");
+                return false;
             }
         } catch (SQLException e) {
-            System.err.println("Lỗi khi kiểm tra tình trạng sách: " + e.getMessage());
+            System.err.println("Lỗi khi kiểm tra số lượng sách: " + e.getMessage());
+            return false;
         }
 
-        if (!isAvailable) {
+        if (availableBooks <= 0) {
             System.out.println("Sách không còn khả dụng để mượn.");
             return false;
         }
 
-        // Tiến hành mượn sách
-        String query = "INSERT INTO borrowed_books (borrow_date, user_id, book_id, status_br) VALUES (CURRENT_DATE, ?, ?, 'đang mượn')";
-        try (Connection conn = Database.connect();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+        // Lấy username từ bảng users dựa trên account
+        String getUsernameQuery = "SELECT username FROM users WHERE account = ?";
+        String username = null;
 
-            pstmt.setInt(1, userId);
-            pstmt.setInt(2, bookId);
-            pstmt.executeUpdate();
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(getUsernameQuery)) {
+
+            pstmt.setString(1, account);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                username = rs.getString("username");
+            } else {
+                System.out.println("Tài khoản không tồn tại.");
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy thông tin người dùng: " + e.getMessage());
+            return false;
+        }
+
+        // Tiến hành mượn sách và cập nhật số lượng sách
+        String insertBorrowQuery = "INSERT INTO borrowed_books (borrow_date, account, book_name, username) VALUES (CURRENT_DATE, ?, ?, ?)";
+        String updateBookQuery = "UPDATE books SET available = available - 1 WHERE book_name = ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement insertStmt = conn.prepareStatement(insertBorrowQuery);
+             PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
+
+            // Thêm bản ghi vào bảng borrowed_books
+            insertStmt.setString(1, account);
+            insertStmt.setString(2, bookName);
+            insertStmt.setString(3, username);
+            insertStmt.executeUpdate();
+
+            // Cập nhật số lượng sách
+            updateStmt.setString(1, bookName);
+            updateStmt.executeUpdate();
+
             return true;
         } catch (SQLException e) {
-            System.err.println("Lỗi khi mượn sách: " + e.getMessage());
+            System.err.println("Lỗi khi mượn sách hoặc cập nhật số lượng: " + e.getMessage());
             return false;
         }
     }
 
 
-    // Phương thức trả sách
-    public boolean returnBook(int userId, int bookId) {
-        String query = "UPDATE borrowed_books SET return_date = CURRENT_DATE, status_br = 'đã trả' WHERE user_id = ? AND book_id = ? AND status_br = 'đang mượn'";
-        try (Connection conn = Database.connect();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setInt(1, userId);
-            pstmt.setInt(2, bookId);
-            pstmt.executeUpdate();
-            return true;
+    // Phương thức trả sách
+    public boolean returnBook(String account, String bookName) {
+        // Truy vấn xóa bản ghi trong bảng borrowed_books
+        String deleteBorrowQuery = "DELETE FROM borrowed_books WHERE account = ? AND book_name = ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(deleteBorrowQuery)) {
+
+            pstmt.setString(1, account);
+            pstmt.setString(2, bookName);
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Tăng lại số lượng sách trong bảng books
+                String updateBookQuery = "UPDATE books SET available = available + 1 WHERE book_name = ?";
+                try (PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
+                    updateStmt.setString(1, bookName);
+                    updateStmt.executeUpdate();
+                }
+                return true;
+            } else {
+                System.out.println("Không tìm thấy bản ghi để trả sách.");
+                return false;
+            }
         } catch (SQLException e) {
             System.err.println("Lỗi khi trả sách: " + e.getMessage());
             return false;
         }
     }
+
+    public List<BorrowedBook> getAllBorrowedBooks() {
+        List<BorrowedBook> borrowedBooks = new ArrayList<>();
+        String query = "SELECT borrow_date, account, book_name, username FROM borrowed_books";
+
+        try (Connection conn = Database.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                // Lấy dữ liệu từ ResultSet và tạo đối tượng BorrowedBook
+                Date borrowDate = rs.getDate("borrow_date");
+                String account = rs.getString("account");
+                String bookName = rs.getString("book_name");
+                String username = rs.getString("username");
+
+                // Thêm đối tượng BorrowedBook vào danh sách
+                borrowedBooks.add(new BorrowedBook(borrowDate, account, bookName, username));
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy tất cả sách đã mượn: " + e.getMessage());
+        }
+        return borrowedBooks;
+    }
+
+
+
 }
