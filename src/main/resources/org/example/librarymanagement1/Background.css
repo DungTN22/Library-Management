@@ -55,7 +55,6 @@
 .logo_library_background {
     -fx-background-radius: 15px;
     -fx-background-color: #ADCAC6;
-;
 }
 
 .logo_user_background {
@@ -66,4 +65,32 @@
 .topic_background {
     -fx-background-radius: 0px 30px 30px 0px;
     -fx-background-color: linear-gradient(to right,#5B9893,#0bb185);
+}
+
+.change_mode_local {
+    -fx-background-color: #73e794;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+}
+
+.change_mode_api {
+    -fx-background-color: #ff857d;
+    -fx-text-fill: white;
+    -fx-background-radius: 30px;
+}
+
+.search_cell_even {
+    -fx-background-color: #eafffb;
+}
+
+.search_cell_even: hover {
+    -fx-background-color: #d5d9d7;
+}
+
+.search_cell_odd {
+    -fx-background-color: #fff;
+}
+
+.search_cell_odd: hover {
+    -fx-background-color: #d5d9d7;
 }

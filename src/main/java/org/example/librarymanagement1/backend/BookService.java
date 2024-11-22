@@ -98,7 +98,7 @@ public class BookService {
             pstmt.setString(3, book.getGenre());
             pstmt.setInt(4, book.getYear());
             pstmt.setInt(5, book.getPages());
-            pstmt.setBoolean(6, book.isAvailable());
+            pstmt.setInt(6, book.isAvailable());
             pstmt.setString(7, book.getImageLink());
             pstmt.setString(8, book.getDescription());
 
@@ -124,7 +124,7 @@ public class BookService {
             pstmt.setString(3, book.getGenre());
             pstmt.setInt(4, book.getYear());
             pstmt.setInt(5, book.getPages());
-            pstmt.setBoolean(6, book.isAvailable());
+            pstmt.setInt(6, book.isAvailable());
             pstmt.setString(7, book.getImageLink());
             pstmt.setString(8, book.getDescription());
             pstmt.setInt(9, book.getBookId());
@@ -225,7 +225,7 @@ public class BookService {
                 rs.getString("genre"),
                 rs.getInt("year"),
                 rs.getInt("pages"),
-                rs.getBoolean("available"),
+                rs.getInt("available"),
                 rs.getString("image_link"),
                 rs.getString("description")
         );

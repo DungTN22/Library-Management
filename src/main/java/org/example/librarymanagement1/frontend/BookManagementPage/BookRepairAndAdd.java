@@ -238,7 +238,7 @@ public class BookRepairAndAdd implements Initializable {
         if (checkInfoBook()) {
             Book newBook = new Book(bookService.getLastId() + 1, nameField.getText(),authorField.getText(),genresField.getText(),
                     Integer.parseInt(publicationDateField.getText()), Integer.parseInt(numberPagesField.getText()),
-                    true, linkImageField.getText(), descriptionField.getText());
+                    10, linkImageField.getText(), descriptionField.getText());
             if (bookService.addBook(newBook)) {
                 BookManagement bookManagement = SetUp.bookManageLoader.getController();
                 bookManagement.addCellsToTable(newBook);
@@ -261,7 +261,7 @@ public class BookRepairAndAdd implements Initializable {
         if (checkInfoBook()) {
             Book newBook = new Book(repairBook.getBookId(),nameField.getText(),authorField.getText(),genresField.getText(),
                     Integer.parseInt(publicationDateField.getText()), Integer.parseInt(numberPagesField.getText()),
-                    true, linkImageField.getText(), descriptionField.getText());
+                    10, linkImageField.getText(), descriptionField.getText());
             if (bookService.updateBook(newBook)) {
                 parent.updateValueBookCell(newBook);
                 showNotification(true, buttonNotification, "Repair Successfully!");

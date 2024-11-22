@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.SearchPage.SearchController">
@@ -49,7 +50,7 @@
                               </ImageView>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                        <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" textFill="#d5d9d7" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
                            <font>
                               <Font name="MuseoModerno Light" size="28.0" />
                            </font>
@@ -85,10 +86,16 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ListView fx:id="resultBar" fixedCellSize="35.0" layoutX="170.0" layoutY="148.0" maxHeight="350.0" minHeight="0.0" prefHeight="375.0" prefWidth="638.0" styleClass="list_view" stylesheets="@Listview.css">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor></ListView>
+                  <Label fx:id="changeModeButton" alignment="CENTER" layoutX="142.0" layoutY="40.0" prefHeight="40.0" prefWidth="86.0" styleClass="change_mode_local" stylesheets="@Background.css" text="LOCAL" textAlignment="CENTER">
+                     <font>
+                        <Font name="MuseoModerno Light" size="24.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="scrollSearchBar" hbarPolicy="NEVER" hmax="0.0" layoutX="170.0" layoutY="148.0" prefHeight="400.0" prefWidth="640.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css" vbarPolicy="NEVER" vmax="0.0">
+                     <content>
+                        <VBox fx:id="cellResultSearch" prefHeight="400.0" prefWidth="640.0" />
+                     </content>
+                  </ScrollPane>
                </children>
             </AnchorPane>
          </children>

@@ -144,6 +144,7 @@ public class BookManagement implements Initializable {
             if (newVal.doubleValue() == 1.0 && !SetUp.loadBookManageTableThread.isAlive()) { // Nếu đã cuộn tới cuối
                 loadDataForTable();
             }
+            // kiểm tra vị trí của cell so với scroll pane
             for (int i = 0; i < table.getChildren().size(); i++) {
                 Node cell = table.getChildren().get(i);
                 cell.setVisible(isNodeVisible(bookCellScrollPane, cell));
@@ -151,6 +152,13 @@ public class BookManagement implements Initializable {
         });
     }
 
+    /**
+     * kiểm tra cell có nằm ngoài phạm vi nhìn thấy của scroll pane tránh lag.
+     *
+     * @param scrollPane scrollPane
+     * @param node cell
+     * @return đúng nếu nằm ngoài, sai nếu ngược lại
+     */
     public boolean isNodeVisible(ScrollPane scrollPane, Node node) {
         Bounds viewportBounds = scrollPane.getViewportBounds();
         Bounds nodeBounds = node.localToParent(node.getBoundsInLocal());
@@ -184,6 +192,9 @@ public class BookManagement implements Initializable {
         SetUp.loadBookManageTableThread.start();
     }
 
+    /**
+     * cập nhật lại book table
+     */
     public void resetBookTable() {
         bookCellScrollPane.setVvalue(0);
         table.getChildren().clear();
@@ -191,6 +202,9 @@ public class BookManagement implements Initializable {
         totalData = 0;
     }
 
+    /**
+     * kiểm tra sự thay đổi của thanh searchBar
+     */
     public void listenSearchChange() {
         searchBookBar.textProperty().addListener((observable, oldValue, newValue) -> {
             if (searchBookBar.getText().isEmpty()) {
