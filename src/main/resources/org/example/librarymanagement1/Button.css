@@ -1,0 +1,79 @@
+.menu_button_normal {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+}
+
+.menu_button_normal: hover {
+    -fx-text-fill: #ccc;
+}
+
+.menu_button_main {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border-width: 0px 0px 3px 0px;
+}
+
+.search_button {
+    -fx-background-color: transparent;
+    -fx-background-color: #ADCAC6;
+    -fx-cursor: hand;
+    -fx-background-radius: 39px;
+}
+
+.search_button: hover {
+    -fx-background-color: #bae4dd;
+}
+
+.delete_book_button {
+    -fx-background-color: #ff1f1f;
+    -fx-background-radius: 10px;
+}
+
+.delete_book_button: hover {
+    -fx-background-color: #ff8686;
+}
+
+.repair_book_button {
+    -fx-background-color: #fffb00;
+    -fx-background-radius: 10px;
+}
+.repair_book_button: hover {
+    -fx-background-color: #fffc97;
+}
+
+.detail_book_button {
+    -fx-background-color: #0bff1c;
+    -fx-background-radius: 10px;
+}
+
+.detail_book_button: hover {
+    -fx-background-color: #9bffa2;
+}
+
+.add_book_button {
+    -fx-background-color: #a7cfff;
+    -fx-background-radius: 10px;
+}
+
+.add_book_button: hover {
+    -fx-background-color: #c2dfff;
+}
+
+.jump_listbook_button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 25px;
+}
+.jump_listbook_button: hover {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+.see_all_button {
+    -fx-background-color: transparent;
+}
+
+.see_all_button: hover {
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-color: #000;
+}

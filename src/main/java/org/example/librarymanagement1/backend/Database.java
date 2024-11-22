@@ -10,16 +10,16 @@ import java.sql.Statement;
 public class Database {
 
     // Thông tin kết nối cơ sở dữ liệu MySQL
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management?useSSL=false&serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "Cuong2005@";
+    private static final String DB_PASSWORD = "123conbo";
 
     // Khởi tạo kết nối
     public static Connection connect() {
         Connection connection = null;
         try {
             // Đăng ký MySQL JDBC Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // here
 
             // Tạo kết nối
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

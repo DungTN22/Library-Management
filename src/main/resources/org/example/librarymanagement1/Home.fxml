@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="2100.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.Home.HomeController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">
+               <children>
+                  <AnchorPane minHeight="121.0" prefHeight="122.0" prefWidth="1085.0">
+                     <children>
+                        <Button fx:id="homeMenuButton" layoutX="60.0" layoutY="37.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="120.0" styleClass="menu_button_main" stylesheets="@Button.css" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="searchMenuButton" layoutX="240.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="58.0" prefWidth="128.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Search" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bookmanageMenuButton" layoutX="420.0" layoutY="45.0" mnemonicParsing="false" onAction="#goToBookManagePage" prefHeight="58.0" prefWidth="110.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Book" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="usermanageMenuButton" layoutX="580.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserManagePage" prefHeight="58.0" prefWidth="100.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="User" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane layoutX="949.0" layoutY="24.0" prefHeight="78.0" prefWidth="98.0" styleClass="logo_user_background" stylesheets="@Background.css">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="19.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0">
+                                 <image>
+                                    <Image url="@../../../image/solar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" maxHeight="2160.0" prefHeight="2045.0" prefWidth="1080.0" styleClass="scroll-bar" stylesheets="@ScrollBar.css" vbarPolicy="ALWAYS">
+               <content>
+                  <AnchorPane prefHeight="1979.0" prefWidth="1080.0">
+                     <children>
+                        <AnchorPane layoutX="153.0" layoutY="152.8" prefHeight="367.0" prefWidth="800.0" styleClass="logo_library_background" stylesheets="@Background.css" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="120.0">
+                           <children>
+                              <Label alignment="CENTER" layoutX="71.2" layoutY="62.0" prefHeight="203.0" prefWidth="658.0" text="LIBRARIANS" textFill="#5b9893" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="71.0">
+                                 <font>
+                                    <Font name="MuseoModerno Light" size="80.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="185.0" layoutY="200.0" prefHeight="53.0" prefWidth="446.0" text="Books, books and books" textAlignment="CENTER" textFill="#5b9893" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="177.0">
+                                 <font>
+                                    <Font name="MuseoModerno Light" size="32.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                        <AnchorPane layoutX="427.0" layoutY="805.0" prefHeight="1431.0" prefWidth="1080.0" AnchorPane.bottomAnchor="-112.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="550.0">
+                           <children>
+                              <ScrollPane fx:id="newBookScroll" hbarPolicy="NEVER" layoutX="101.0" layoutY="146.0" prefHeight="300.0" prefWidth="880.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css" vbarPolicy="NEVER" vmax="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                 <content>
+                                    <HBox fx:id="listNewBooks" prefHeight="300.0" prefWidth="880.0" spacing="26.67" />
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fx:id="popularBookScroll" hbarPolicy="NEVER" layoutX="97.0" layoutY="561.0" prefHeight="300.0" prefWidth="880.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css" vbarPolicy="NEVER" vmax="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                 <content>
+                                    <HBox fx:id="listPopuplarBooks" prefHeight="300.0" prefWidth="880.0" spacing="26.67" />
+                                 </content>
+                              </ScrollPane>
+                              <ScrollPane fx:id="greatBookScroll" hbarPolicy="NEVER" layoutX="97.0" layoutY="982.0" prefHeight="300.0" prefWidth="880.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css" vbarPolicy="NEVER" vmax="0.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0">
+                                 <content>
+                                    <HBox fx:id="listGreatBooks" prefHeight="300.0" prefWidth="880.0" spacing="26.67" />
+                                 </content>
+                              </ScrollPane>
+                              <Label layoutX="100.0" layoutY="83.0" prefHeight="50.0" prefWidth="155.0" text="New Books" AnchorPane.leftAnchor="100.0">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="93.0" layoutY="498.0" prefHeight="50.0" prefWidth="189.0" text="Popular Books" AnchorPane.leftAnchor="100.0">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="98.0" layoutY="917.0" prefHeight="50.0" prefWidth="177.0" text="Great Books" AnchorPane.leftAnchor="98.0">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="rightNBookButton" layoutX="988.0" layoutY="145.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle right.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="leftGBookButton" layoutX="15.0" layoutY="980.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="rightGBookButton" layoutX="988.0" layoutY="980.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle right.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="leftPBookButton" layoutX="15.0" layoutY="560.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="leftNBookButton" layoutX="15.0" layoutY="145.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle left.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="rightPBookButton" layoutX="988.0" layoutY="560.0" maxHeight="300.0" maxWidth="80.0" mnemonicParsing="false" onAction="#moveList" prefHeight="300.0" prefWidth="80.0" styleClass="jump_listbook_button" stylesheets="@Button.css">
+                                 <graphic>
+                                    <ImageView fitHeight="100.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../image/triangle right.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="allPBookButton" layoutX="870.0" layoutY="498.0" maxHeight="51.0" minHeight="40.0" mnemonicParsing="false" onAction="#seeAllBookPage" prefHeight="51.0" prefWidth="112.0" styleClass="see_all_button" stylesheets="@Button.css" text="See All">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="allNBookButton" layoutX="870.0" layoutY="83.0" maxHeight="52.0" minHeight="40.0" mnemonicParsing="false" onAction="#seeAllBookPage" prefHeight="52.0" prefWidth="112.0" styleClass="see_all_button" stylesheets="@Button.css" text="See All">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="allGBookButton" layoutX="870.0" layoutY="917.0" maxHeight="50.0" minHeight="40.0" mnemonicParsing="false" onAction="#seeAllBookPage" prefHeight="50.0" prefWidth="112.0" styleClass="see_all_button" stylesheets="@Button.css" text="See All">
+                                 <font>
+                                    <Font name="MuseoModerno Medium" size="24.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

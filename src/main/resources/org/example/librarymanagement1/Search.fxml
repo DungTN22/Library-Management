@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.SearchPage.SearchController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">
+               <children>
+                  <AnchorPane minHeight="121.0" prefHeight="122.0" prefWidth="1085.0">
+                     <children>
+                        <Button fx:id="homeMenuButton" layoutX="60.0" layoutY="37.0" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="58.0" prefWidth="120.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Home" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="searchMenuButton" layoutX="240.0" layoutY="41.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="128.0" styleClass="menu_button_main" stylesheets="@Button.css" text="Search" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bookmanageMenuButton" layoutX="420.0" layoutY="45.0" mnemonicParsing="false" onAction="#goToBookManagePage" prefHeight="58.0" prefWidth="110.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Book" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="usermanageMenuButton" layoutX="580.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserManagePage" prefHeight="58.0" prefWidth="100.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="User" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane layoutX="949.0" layoutY="24.0" prefHeight="78.0" prefWidth="98.0" styleClass="logo_user_background" stylesheets="@Background.css">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="19.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0">
+                                 <image>
+                                    <Image url="@../../../image/solar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <AnchorPane layoutY="122.4" minHeight="0.0" prefHeight="598.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="122.0">
+               <children>
+                  <HBox layoutX="142.0" layoutY="89.0" prefHeight="59.0" prefWidth="793.0" spacing="10.0" AnchorPane.topAnchor="89.0">
+                     <children>
+                        <TextField fx:id="searchBar" maxHeight="59.0" minHeight="59.0" onAction="#searchData" prefHeight="59.0" prefWidth="695.0" promptText="Search" styleClass="search_bar_background" stylesheets="@Background.css">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding></TextField>
+                        <Button fx:id="searchBarButton" maxHeight="59.0" minHeight="59.0" mnemonicParsing="false" onAction="#seeAllResultBookPage" prefHeight="59.0" prefWidth="86.0" styleClass="search_button" stylesheets="@Button.css">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../image/magnifying-glass-1083373_640.png" />
+                                 </image></ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <ListView fx:id="resultBar" fixedCellSize="35.0" layoutX="170.0" layoutY="148.0" maxHeight="350.0" minHeight="0.0" prefHeight="375.0" prefWidth="638.0" styleClass="list_view" stylesheets="@Listview.css">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></ListView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

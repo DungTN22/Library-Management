@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.Other.BookTypePage">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="-6.0" layoutY="120.0" prefHeight="604.0" prefWidth="1080.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="120.0">
+               <children>
+                  <Label fx:id="topicListBooks" alignment="CENTER" layoutX="4.8" layoutY="34.4" prefHeight="46.0" prefWidth="263.0" styleClass="topic_background" stylesheets="@Background.css" text="Great Books" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="34.0">
+                     <font>
+                        <Font name="MuseoModerno" size="30.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="scrollGrid" hbarPolicy="NEVER" hmax="0.0" layoutX="7.2" layoutY="202.4" prefHeight="439.0" prefWidth="1072.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <content>
+                        <AnchorPane prefHeight="598.0" prefWidth="1083.0">
+                           <children>
+                              <GridPane fx:id="gridBooks" hgap="50.0" layoutX="305.0" layoutY="124.0" prefHeight="597.0" prefWidth="956.0" vgap="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <AnchorPane prefHeight="220.8" prefWidth="151.2">
+                                       <children>
+                                          <ImageView fitHeight="240.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-7.0" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="https://marketplace.canva.com/EAFaQMYuZbo/1/0/1003w/canva-brown-rusty-mystery-novel-book-cover-hG1QhA7BiBU.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="TOP_CENTER" layoutX="-2.0" layoutY="240.8" prefHeight="37.0" prefWidth="156.0" text="Soul Khing" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="241.0">
+                                             <font>
+                                                <Font name="Times New Roman" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="200.0" prefWidth="151.0" GridPane.columnIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">
+               <children>
+                  <AnchorPane minHeight="121.0" prefHeight="122.0" prefWidth="1085.0">
+                     <children>
+                        <Button fx:id="homeMenuButton" layoutX="60.0" layoutY="37.0" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="58.0" prefWidth="120.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="searchMenuButton" layoutX="240.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="58.0" prefWidth="128.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Search" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="bookmanageMenuButton" layoutX="420.0" layoutY="45.0" mnemonicParsing="false" onAction="#goToBookManagePage" prefHeight="58.0" prefWidth="110.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Book" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="usermanageMenuButton" layoutX="580.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserManagePage" prefHeight="58.0" prefWidth="100.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="User" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                        <AnchorPane layoutX="949.0" layoutY="24.0" prefHeight="78.0" prefWidth="98.0" styleClass="logo_user_background" stylesheets="@Background.css">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="19.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0">
+                                 <image>
+                                    <Image url="@../../../image/solar.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                           <font>
+                              <Font name="MuseoModerno Light" size="28.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
