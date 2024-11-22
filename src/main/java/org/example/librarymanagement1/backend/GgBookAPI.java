@@ -14,6 +14,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import io.github.cdimascio.dotenv.Dotenv;
 public class GgBookAPI {
@@ -51,7 +53,7 @@ public class GgBookAPI {
                     String imageLink = volumeInfo.has("imageLinks") ? volumeInfo.getAsJsonObject("imageLinks").get("thumbnail").getAsString() : "";
                     String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No description available";
 
-                    Book book = new Book(0, title, author, genre, year, pages, true, imageLink, description);
+                    Book book = new Book(0, title, author, genre, year, pages, 10, imageLink, description);
                     return Optional.of(book);
                 }
             }
@@ -61,8 +63,8 @@ public class GgBookAPI {
         return Optional.empty();  // Không tìm thấy sách
     }
 
-    // Phương thức để tìm kiếm sách và tự động thêm vào cơ sở dữ liệu
-    public void searchAndInsertBook(String query, Connection connection) {
+    public List<Book> searchBookngoai(String query) {
+        List<Book> books = new ArrayList<>();
         try {
             // Gửi yêu cầu đến Google Books API với API key
             URL url = new URL(GOOGLE_BOOKS_API_URL + query + "&key=" + API_KEY);
@@ -94,8 +96,8 @@ public class GgBookAPI {
                         String imageLink = volumeInfo.has("imageLinks") ? volumeInfo.getAsJsonObject("imageLinks").get("thumbnail").getAsString() : "";
                         String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No description available";
 
-                        // Chèn sách vào cơ sở dữ liệu
-                        insertBookIntoDatabase(connection, title, author, genre, year, pages, true, imageLink, description, 0.0f, 0);
+                        // Thêm sách vào danh sách
+                        books.add(new Book(0,title, author, genre, year, pages,10, imageLink, description));
 
                         count++; // Tăng biến đếm
                     }
@@ -106,7 +108,9 @@ public class GgBookAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return books;
     }
+
 
 
     // Phương thức để phân tích năm từ chuỗi "publishedDate"
@@ -118,7 +122,7 @@ public class GgBookAPI {
         }
     }
 
-    // Phương thức thêm sách vào cơ sở dữ liệu
+    // Phương thức thêm sách vào cơ sở dữ liệu book trong
     private void insertBookIntoDatabase(Connection connection, String title, String author, String genre, int year,
                                         int pages, boolean available, String imageLink, String description,
                                         float rating, int popularity) {
@@ -165,5 +169,7 @@ public class GgBookAPI {
             e.printStackTrace();
         }
     }
+
+
 
 }

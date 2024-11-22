@@ -174,7 +174,7 @@ public class BookService {
                 rs.getString("genre"),
                 rs.getInt("year"),
                 rs.getInt("pages"),
-                rs.getBoolean("available"),
+                rs.getInt("available"),
                 rs.getString("image_link"),
                 rs.getString("description")
         );

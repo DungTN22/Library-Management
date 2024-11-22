@@ -7,12 +7,12 @@ public class Book {
     private String genre;
     private int year;
     private int pages;
-    private boolean available;
+    private int available;
     private String imageLink;
     private String description;
 
     // Constructor
-    public Book(int bookId, String title, String author, String genre, int year, int pages, boolean available, String imageLink, String description) {
+    public Book(int bookId, String title, String author, String genre, int year, int pages, int available, String imageLink, String description) {
         this.bookId = bookId;
         this.title = title;
         this.author = author;
