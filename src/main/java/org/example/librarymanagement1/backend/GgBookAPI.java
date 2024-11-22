@@ -12,6 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -78,7 +79,10 @@ public class GgBookAPI {
                 JsonArray items = jsonObject.getAsJsonArray("items");
 
                 if (items != null && items.size() > 0) {
+                    int count = 0; // Biến đếm để kiểm soát số lượng sách được thêm
                     for (JsonElement item : items) {
+                        if (count >= 10) break; // Dừng khi đã thêm 10 cuốn sách
+
                         JsonObject volumeInfo = item.getAsJsonObject().getAsJsonObject("volumeInfo");
 
                         // Lấy thông tin sách từ JSON
@@ -92,6 +96,8 @@ public class GgBookAPI {
 
                         // Chèn sách vào cơ sở dữ liệu
                         insertBookIntoDatabase(connection, title, author, genre, year, pages, true, imageLink, description, 0.0f, 0);
+
+                        count++; // Tăng biến đếm
                     }
                 }
             } else {
@@ -101,6 +107,7 @@ public class GgBookAPI {
             e.printStackTrace();
         }
     }
+
 
     // Phương thức để phân tích năm từ chuỗi "publishedDate"
     private int parseYear(String publishedDate) {
@@ -115,29 +122,48 @@ public class GgBookAPI {
     private void insertBookIntoDatabase(Connection connection, String title, String author, String genre, int year,
                                         int pages, boolean available, String imageLink, String description,
                                         float rating, int popularity) {
-        String sql = "INSERT INTO books (title, author, genre, year, pages, available, image_link, description, rating, popularity) " +
+        // Kiểm tra xem sách đã tồn tại chưa
+        String checkSql = "SELECT COUNT(*) FROM books WHERE title = ? AND author = ?";
+        String insertSql = "INSERT INTO books (title, author, genre, year, pages, available, image_link, description, rating, popularity) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, title);
-            preparedStatement.setString(2, author);
-            preparedStatement.setString(3, genre);
-            preparedStatement.setInt(4, year);
-            preparedStatement.setInt(5, pages);
-            preparedStatement.setBoolean(6, available);
-            preparedStatement.setString(7, imageLink);
-            preparedStatement.setString(8, description);
-            preparedStatement.setFloat(9, rating);
-            preparedStatement.setInt(10, popularity);
 
-            // Thực thi câu lệnh SQL
-            int rowsAffected = preparedStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                System.out.println("Book inserted successfully: " + title);
-            } else {
-                System.out.println("Failed to insert book: " + title);
+        try (PreparedStatement checkStatement = connection.prepareStatement(checkSql)) {
+            // Gán giá trị cho câu lệnh kiểm tra
+            checkStatement.setString(1, title);
+            checkStatement.setString(2, author);
+
+            try (ResultSet resultSet = checkStatement.executeQuery()) {
+                if (resultSet.next() && resultSet.getInt(1) > 0) {
+                    // Nếu sách đã tồn tại, không thực hiện thêm
+                    System.out.println("Book already exists: " + title);
+                    return;
+                }
+            }
+
+            // Nếu sách chưa tồn tại, thực hiện chèn
+            try (PreparedStatement insertStatement = connection.prepareStatement(insertSql)) {
+                insertStatement.setString(1, title);
+                insertStatement.setString(2, author);
+                insertStatement.setString(3, genre);
+                insertStatement.setInt(4, year);
+                insertStatement.setInt(5, pages);
+                insertStatement.setBoolean(6, available);
+                insertStatement.setString(7, imageLink);
+                insertStatement.setString(8, description);
+                insertStatement.setFloat(9, rating);
+                insertStatement.setInt(10, popularity);
+
+                // Thực thi câu lệnh SQL
+                int rowsAffected = insertStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    System.out.println("Book inserted successfully: " + title);
+                } else {
+                    System.out.println("Failed to insert book: " + title);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
 }
