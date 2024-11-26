@@ -62,7 +62,7 @@ public class BorrowBookManagement implements Initializable {
 
     @FXML
     public void goToUserManagePage() throws IOException {
-
+        SetUp.newStage.setScene(SetUp.userScene);
     }
 
     @FXML

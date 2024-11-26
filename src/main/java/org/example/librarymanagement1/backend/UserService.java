@@ -63,6 +63,48 @@ public class UserService {
         }
     }
 
+    // Phương thức cập nhật thông tin người dùng
+    public boolean updateUser(User user) {
+        String query = "UPDATE users " +
+                "SET name = ?, email = ?, phone = ?, account = ?, password = ?, status = ? " +
+                "WHERE user_id = ?;";
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, user.getName());
+            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getPhone());
+            pstmt.setString(4, user.getAccount());
+            pstmt.setString(5, user.getPassword());
+            pstmt.setString(6, user.getStatus());
+            pstmt.setInt(7, user.getUserId());
+
+            pstmt.executeUpdate();
+            return true; // Trả về true nếu cập nhật thành công
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi cập nhật người dùng: " + e.getMessage());
+            return false; // Trả về false nếu có lỗi xảy ra
+        }
+    }
+
+    // phương thức ấy ra Id cao nhất phục vụ cho thêm sách
+    public int getLastId() {
+        String query = "SELECT MAX(user_id) as maxID FROM users;";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("maxID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     // Phương thức lấy chi tiết người dùng dựa trên user_id
     public User getUserDetails(int userId) {
         User user = null;
@@ -81,6 +123,29 @@ public class UserService {
             System.err.println("Lỗi khi lấy thông tin chi tiết người dùng: " + e.getMessage());
         }
         return user;
+    }
+
+    // Phương thức tìm kiếm người dùng
+    public List<User> searchUser(String keyword) {
+        List<User> users = new ArrayList<>();
+        String query = "SELECT * FROM users WHERE name LIKE ? OR email LIKE ? OR account LIKE ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            String searchPattern = "%" + keyword + "%";
+            pstmt.setString(1, searchPattern);
+            pstmt.setString(2, searchPattern);
+            pstmt.setString(3, searchPattern);
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                users.add(mapResultSetToUser(rs)); // Ánh xạ từ ResultSet sang User
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi tìm kiếm người dùng: " + e.getMessage());
+        }
+        return users;
     }
 
     // Phương thức ánh xạ ResultSet sang đối tượng User

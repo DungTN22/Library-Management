@@ -19,10 +19,7 @@ import org.example.librarymanagement1.frontend.Other.BookTypePage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SearchController implements Initializable {
     @FXML
@@ -63,7 +60,7 @@ public class SearchController implements Initializable {
     @FXML
     public void goToUserManagePage() throws IOException {
         searchBar.setText("");
-
+        SetUp.newStage.setScene(SetUp.userScene);
     }
 
     @FXML

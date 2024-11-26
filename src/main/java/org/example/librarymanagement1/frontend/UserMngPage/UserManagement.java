@@ -1,6 +1,5 @@
-package org.example.librarymanagement1.frontend.BookManagementPage;
+package org.example.librarymanagement1.frontend.UserMngPage;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,46 +7,30 @@ import javafx.fxml.Initializable;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.example.librarymanagement1.Book;
-import org.example.librarymanagement1.HelloApplication;
-import org.example.librarymanagement1.backend.BookService;
+import org.example.librarymanagement1.User;
 import org.example.librarymanagement1.backend.SetUp;
+import org.example.librarymanagement1.backend.UserService;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BookManagement implements Initializable {
+public class UserManagement implements Initializable {
     @FXML
     private VBox table;
 
     @FXML
-    private TextField searchBookBar;
+    private ScrollPane userCellScrollPane;
 
     @FXML
-    private ScrollPane bookCellScrollPane;
+    private TextField searchUserBar;
 
-    private List<Book> bookList = null;
-
-    private int totalData = 0;
-
-    BookService bookService = new BookService();
-
-    private void setBookList() {
-        this.bookList = bookService.getAllBooks();
-    }
-
-    private void setBookList(String key) {
-        this.bookList = bookService.searchBooks(key,200);
-    }
+    private List<User> userList = null;
 
     @FXML
     public void goToHomePage() throws IOException {
@@ -74,15 +57,16 @@ public class BookManagement implements Initializable {
         SetUp.newStage.setScene(SetUp.borrowBookManageScene);
     }
 
-    /**
-     * Sử dụng cho nút thêm sách, dùng để chuyển sang add book page (trang thêm sách).
-     */
-    @FXML
-    public void addBookPage() {
-        BookRepairAndAdd add = SetUp.repairAddLoader.getController();
-        add.setType(0);
-        add.clearDataInField();
-        SetUp.newStage.setScene(SetUp.repairAddBookScene);
+    private int totalData = 0;
+
+    private void setBookList(String key) {
+        this.userList = userService.searchUser(key);
+    }
+
+    UserService userService = new UserService();
+
+    private void setUserList() {
+        this.userList = userService.getAllUsers();
     }
 
     /**
@@ -90,9 +74,9 @@ public class BookManagement implements Initializable {
      *
      * @return kích thước số lượng sách
      */
-    public int getBookListSize() {
+    public int getUserListSize() {
         try {
-            return bookList.size();
+            return userList.size();
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -104,12 +88,12 @@ public class BookManagement implements Initializable {
      */
     private void createCells(int number) {
         for (int i = 0; i < number; i++) {
-            if (totalData + i >= getBookListSize()) {
-                totalData = getBookListSize();
+            if (totalData + i >= getUserListSize()) {
+                totalData = getUserListSize();
                 return;
             }
             try {
-                addCellsToTable(bookList.get(totalData + i));
+                addCellsToTable(userList.get(totalData + i));
             } catch (NullPointerException e) {
                 System.out.println("BookManagement : " + e.getMessage());
             }
@@ -118,18 +102,17 @@ public class BookManagement implements Initializable {
     }
 
     /**
-     * tao cell dữ liệu của 1 sách.
+     * tao cell dữ liệu của 1 nguoi dung.
      *
-     * @param book dữ liệu quyển sách dùng tạo cell
      */
-    public void addCellsToTable(Book book) {
+    public void addCellsToTable(User user) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/librarymanagement1/BookManagementTableCell.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/librarymanagement1/UserManagementTableCell.fxml"));
             HBox hBox = fxmlLoader.load();
 
-            BookManagementTableCell controller = fxmlLoader.getController();
+            UserManagementCell controller = fxmlLoader.getController();
             Platform.runLater(() -> {
-                controller.createNewHbox(book);
+                controller.createNewHbox(user);
                 table.getChildren().add(hBox);
             });
         } catch (IOException e) {
@@ -141,25 +124,17 @@ public class BookManagement implements Initializable {
      * kiểm tra thanh cuộn của GridBook, khi chạm đến đáy sẽ load thêm dữ liệu (nếu còn)
      */
     private void setupScrollListener() {
-        bookCellScrollPane.vvalueProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal.doubleValue() == 1.0 && !SetUp.loadBookManageTableThread.isAlive()) { // Nếu đã cuộn tới cuối
+        userCellScrollPane.vvalueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.doubleValue() == 1.0 && !SetUp.loadUserManageTableThread.isAlive()) { // Nếu đã cuộn tới cuối
                 loadDataForTable();
             }
-            // kiểm tra vị trí của cell so với scroll pane
             for (int i = 0; i < table.getChildren().size(); i++) {
                 Node cell = table.getChildren().get(i);
-                cell.setVisible(isNodeVisible(bookCellScrollPane, cell));
+                cell.setVisible(isNodeVisible(userCellScrollPane, cell));
             }
         });
     }
 
-    /**
-     * kiểm tra cell có nằm ngoài phạm vi nhìn thấy của scroll pane tránh lag.
-     *
-     * @param scrollPane scrollPane
-     * @param node cell
-     * @return đúng nếu nằm ngoài, sai nếu ngược lại
-     */
     public boolean isNodeVisible(ScrollPane scrollPane, Node node) {
         Bounds viewportBounds = scrollPane.getViewportBounds();
         Bounds nodeBounds = node.localToParent(node.getBoundsInLocal());
@@ -179,47 +154,29 @@ public class BookManagement implements Initializable {
         return visibleBounds.intersects(nodeBounds);
     }
 
-    private void setUpBookManagePage() {
-        setBookList();
-        resetBookTable();
+    private void setUpUserManagePage() {
+        setUserList();
+        resetUserTable();
         setupScrollListener();
     }
 
     private void loadDataForTable() {
-        SetUp.loadBookManageTableThread = new Thread(() -> {
+        SetUp.loadUserManageTableThread = new Thread(() -> {
             createCells(30);
         });
 
-        SetUp.loadBookManageTableThread.start();
+        SetUp.loadUserManageTableThread.start();
     }
 
-    /**
-     * cập nhật lại book table
-     */
-    public void resetBookTable() {
-        bookCellScrollPane.setVvalue(0);
+    public void resetUserTable() {
+        userCellScrollPane.setVvalue(0);
         table.getChildren().clear();
         loadDataForTable();
         totalData = 0;
     }
 
-    /**
-     * kiểm tra sự thay đổi của thanh searchBar
-     */
-    public void listenSearchChange() {
-        searchBookBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (searchBookBar.getText().isEmpty()) {
-                setBookList();
-            } else {
-                setBookList(searchBookBar.getText());
-            }
-            resetBookTable();
-        });
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setUpBookManagePage();
-        listenSearchChange();
+        setUpUserManagePage();
     }
 }

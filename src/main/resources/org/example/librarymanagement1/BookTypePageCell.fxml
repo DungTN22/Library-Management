@@ -18,7 +18,7 @@
          </cursor></ImageView>
       <Label fx:id="nameBook" alignment="CENTER" layoutX="-2.0" layoutY="240.8" prefHeight="37.0" prefWidth="156.0" text="những đứa con của thần biển" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="241.0">
          <font>
-            <Font name="Times New Roman" size="14.0" />
+            <Font name="MuseoMordeno" size="14.0" />
          </font>
       </Label>
    </children>
