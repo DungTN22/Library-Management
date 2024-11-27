@@ -1,14 +1,24 @@
-/* TextArea với nền trong suốt */
-.text-area {
-    -fx-font-family: System;
-    -fx-padding: 5px; /* Đảm bảo padding hợp lý */
-    -fx-border-color: transparent; /* Bỏ viền */
-    -fx-control-inner-background: transparent; /* Bên trong TextArea */
-    -fx-text-fill: black;
+/* ScrollPane với nền trong suốt */
+.scroll-pane {
+    -fx-background-color: transparent; /* Làm nền ScrollPane trong suốt */
+    -fx-padding: 5px; /* Khoảng cách giữa viền và nội dung */
+    -fx-border-color: transparent; /* Bỏ viền ngoài */
 }
 
-/* Thanh cuộn của TextArea */
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Label được cuộn trong ScrollPane */
+.label {
+    -fx-font-family: System; /* Phông chữ mặc định */
+    -fx-font-size: 22px; /* Kích thước chữ */
+    -fx-text-fill: black; /* Màu chữ */
+}
+
+/* Thanh cuộn của ScrollPane */
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
     -fx-opacity: 0; /* Làm cho nút cuộn trong suốt */
     -fx-padding: 0; /* Xóa padding để thanh cuộn gọn lại */
     -fx-background-insets: 0; /* Bỏ khoảng cách nền */
@@ -16,12 +26,12 @@
 }
 
 /* Thay đổi màu của phần thanh kéo (thumb) */
-.scroll-bar .thumb {
+.scroll-pane .scroll-bar .thumb {
     -fx-background-color: #b9b0b0; /* Màu của thumb */
     -fx-background-radius: 1; /* Bo tròn các góc của thumb */
 }
 
 /* Thay đổi màu nền của đường dẫn (track) */
-.scroll-bar .track {
-    -fx-background-color: #fff; /* Màu nền của track */
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: #f0f0f0; /* Màu nền của track */
 }

@@ -2,6 +2,7 @@ package org.example.librarymanagement1.frontend.BookManagementPage;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,10 +30,13 @@ public class BookDetails implements Initializable {
     private TextField genreField;
 
     @FXML
-    private TextArea descriptionField;
+    private Label descriptionLabel;
 
     @FXML
     private ImageView bookImage;
+
+    @FXML
+    private Button borrowButton;
 
     @FXML
     public void goToHomePage() throws IOException {
@@ -68,7 +72,7 @@ public class BookDetails implements Initializable {
         bookIDField.setText(String.valueOf(id));
         authorField.setText(author);
         genreField.setText(genre);
-        descriptionField.setText(description);
+        descriptionLabel.setText(description);
         Images.setImage(imageLink, bookImage, 200, 320);
     }
 
