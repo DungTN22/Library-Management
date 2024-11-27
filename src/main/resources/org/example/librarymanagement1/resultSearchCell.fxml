@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Label fx:id="cell" maxHeight="35.0" maxWidth="640.0" minHeight="35.0" minWidth="640.0" prefHeight="35.0" prefWidth="640.0" stylesheets="@Background.css" text="Đứa con của biển cả" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.SearchPage.ResultSearchCell">
+<Label fx:id="cell" maxHeight="35.0" maxWidth="640.0" minHeight="35.0" minWidth="640.0" prefHeight="35.0" prefWidth="640.0" stylesheets="@Background.css" text="Đứa con của biển cả" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.SearchPage.ResultSearchCell">
    <font>
       <Font name="Times New Roman" size="24.0" />
    </font>

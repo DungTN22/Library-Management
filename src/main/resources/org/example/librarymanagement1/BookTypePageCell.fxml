@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="278.0" minWidth="151.2" prefHeight="278.0" prefWidth="151.2" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.Other.BookTypePageCell">
+<AnchorPane minHeight="278.0" minWidth="151.2" prefHeight="278.0" prefWidth="151.2" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.Other.BookTypePageCell">
    <children>
       <ImageView fx:id="imageBook" fitHeight="244.0" fitWidth="151.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>

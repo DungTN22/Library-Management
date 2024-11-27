@@ -170,6 +170,48 @@ public class GgBookAPI {
         }
     }
 
+    public void searchAndInsertBook(String query, Connection connection) {
+        try {
+            // Gửi yêu cầu đến Google Books API với API key
+            URL url = new URL(GOOGLE_BOOKS_API_URL + query + "&key=" + API_KEY);
+            HttpURLConnection connectionAPI = (HttpURLConnection) url.openConnection();
+            connectionAPI.setRequestMethod("GET");
+            connectionAPI.connect();
 
+            // Kiểm tra phản hồi từ API
+            int responseCode = connectionAPI.getResponseCode();
+            if (responseCode == 200) {
+                // Đọc dữ liệu JSON trả về từ API
+                JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(connectionAPI.getInputStream()));
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                JsonArray items = jsonObject.getAsJsonArray("items");
+
+                if (items != null && items.size() > 0) {
+                    int count = 0; // Biến đếm để kiểm soát số lượng sách được thêm
+                    for (JsonElement item : items) {
+                        if (count >= 10) break; // Dừng khi đã thêm 10 cuốn sách
+                        JsonObject volumeInfo = item.getAsJsonObject().getAsJsonObject("volumeInfo");
+
+                        // Lấy thông tin sách từ JSON
+                        String title = volumeInfo.has("title") ? volumeInfo.get("title").getAsString() : "Unknown";
+                        String author = volumeInfo.has("authors") ? volumeInfo.getAsJsonArray("authors").get(0).getAsString() : "Unknown";
+                        String genre = volumeInfo.has("categories") ? volumeInfo.getAsJsonArray("categories").get(0).getAsString() : "Unknown";
+                        int year = volumeInfo.has("publishedDate") ? parseYear(volumeInfo.get("publishedDate").getAsString()) : 0;
+                        int pages = volumeInfo.has("pageCount") ? volumeInfo.get("pageCount").getAsInt() : 0;
+                        String imageLink = volumeInfo.has("imageLinks") ? volumeInfo.getAsJsonObject("imageLinks").get("thumbnail").getAsString() : "";
+                        String description = volumeInfo.has("description") ? volumeInfo.get("description").getAsString() : "No description available";
+
+                        // Chèn sách vào cơ sở dữ liệu
+                        insertBookIntoDatabase(connection, title, author, genre, year, pages, true, imageLink, description, 0.0f, 0);
+                        count++; // Tăng biến đếm
+                    }
+                }
+            } else {
+                System.out.println("Failed to fetch data from Google Books API. Response code: " + responseCode);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -1,21 +1,12 @@
 package org.example.librarymanagement1;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.librarymanagement1.backend.BookService;
-import org.example.librarymanagement1.backend.Images;
+
 import org.example.librarymanagement1.backend.SetUp;
-import org.example.librarymanagement1.frontend.BookManagementPage.BookManagement;
-import org.example.librarymanagement1.frontend.BookManagementPage.BookRepairAndAdd;
-import org.example.librarymanagement1.frontend.Home.HomeController;
-import org.example.librarymanagement1.frontend.Other.BookTypePage;
-import org.example.librarymanagement1.frontend.SearchPage.SearchController;
 
 import java.io.IOException;
-
-import static org.example.librarymanagement1.backend.SetUp.searchLoader;
 
 public class HelloApplication extends Application {
 
