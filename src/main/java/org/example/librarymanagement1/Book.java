@@ -41,15 +41,13 @@ public class Book {
         return genre;
     }
 
-    public int getYear() {
-        return year;
-    }
+    public int getYear() { return year; }
 
     public int getPages() {
         return pages;
     }
 
-    public boolean isAvailable() {
+    public int isAvailable() {
         return available;
     }
 
@@ -61,7 +59,7 @@ public class Book {
         return description;
     }
 
-    public void setAvailable(boolean available) {
+    public void setAvailable(int available) {
         this.available = available;
     }
 }

@@ -8,7 +8,7 @@ public class BookSeeder {
 
     public static void main(String[] args) {
         // Kết nối cơ sở dữ liệu
-        try (Connection connection = Database.connect()) {
+        try (Connection connection = Database.getInstance().getConnection()) {
             GgBookAPI api = new GgBookAPI();
 
             // Danh sách các từ khóa để tìm kiếm sách

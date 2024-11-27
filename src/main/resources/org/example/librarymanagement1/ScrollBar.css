@@ -1,0 +1,21 @@
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+     -fx-opacity: 0; /* Làm cho nút cuộn trong suốt */
+     -fx-padding: 0; /* Xóa padding để thanh cuộn gọn lại */
+     -fx-background-insets: 0; /* Bỏ khoảng cách nền */
+     -fx-background-radius: 0; /* Bỏ bo góc nếu có */
+}
+
+/* Thay đổi màu của phần thanh kéo (thumb) */
+.scroll-bar .thumb {
+     -fx-background-color: #b9b0b0; /* Màu của thumb */
+     -fx-background-radius: 1; /* Bo tròn các góc của thumb */
+}
+
+/* Thay đổi màu nền của đường dẫn (track) */
+.scroll-bar .track {
+     -fx-background-color: #fff; /* Màu nền của track */
+}
+
+.scroll_bar_background {
+    -fx-background-color: transparent;
+}

@@ -14,7 +14,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -28,13 +28,15 @@ public class BookService {
     }
 
     // Phương thức lấy danh sách sách mới
-    public List<Book> getNewBooks() {
+    public List<Book> getNewBooks(int topN) {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books ORDER BY year DESC LIMIT 10";
+        String query = "SELECT * FROM books ORDER BY year DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
+        try (Connection conn = Database.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, topN);
+            ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
                 books.add(mapResultSetToBook(rs));
@@ -45,12 +47,12 @@ public class BookService {
         return books;
     }
 
-    // Phương thức lấy sách hay dựa trên xếp hạng (rating). (topN là so luong ma ban muon no in ra nhe )
+    // Phương thức lấy sách hay dựa trên xếp hạng (rating).
     public List<Book> getTopRatedBooks(int topN) {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY rating DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, topN);
@@ -70,7 +72,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY popularity DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, topN);
@@ -88,7 +90,7 @@ public class BookService {
     // Phương thức thêm sách mới vào cơ sở dữ liệu
     public boolean addBook(Book book) {
         String query = "INSERT INTO books (title, author, genre, year, pages, available, image_link, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, book.getTitle());
@@ -96,9 +98,36 @@ public class BookService {
             pstmt.setString(3, book.getGenre());
             pstmt.setInt(4, book.getYear());
             pstmt.setInt(5, book.getPages());
-            pstmt.setBoolean(6, book.isAvailable());
+            pstmt.setInt(6, book.isAvailable());
             pstmt.setString(7, book.getImageLink());
             pstmt.setString(8, book.getDescription());
+
+            pstmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi thêm sách: " + e.getMessage());
+            return false;
+        }
+    }
+
+    // Phương thức cập nhật sách
+    public boolean updateBook(Book book) {
+        String query = "UPDATE books " +
+                "SET title = ?, author = ?, genre = ?, year = ?" +
+                ", pages = ?, available = ?, image_link = ?, description = ? " +
+                "WHERE book_id = ?;";
+        try (Connection conn = Database.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, book.getTitle());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setString(3, book.getGenre());
+            pstmt.setInt(4, book.getYear());
+            pstmt.setInt(5, book.getPages());
+            pstmt.setInt(6, book.isAvailable());
+            pstmt.setString(7, book.getImageLink());
+            pstmt.setString(8, book.getDescription());
+            pstmt.setInt(9, book.getBookId());
 
             pstmt.executeUpdate();
             return true;
@@ -111,7 +140,7 @@ public class BookService {
     // Phương thức xóa sách
     public boolean deleteBook(int bookId) {
         String query = "DELETE FROM books WHERE book_id = ?";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, bookId);
@@ -124,17 +153,20 @@ public class BookService {
     }
 
     // Phương thức tìm kiếm sách
-    public List<Book> searchBooks(String keyword) {
+    public List<Book> searchBooks(String keyword, int numberData) {
         List<Book> books = new ArrayList<>();
-        String query = "SELECT * FROM books WHERE title LIKE ? OR author LIKE ? OR genre LIKE ?";
+        String query = "SELECT * FROM books "
+                + "WHERE title COLLATE utf8mb4_general_ci LIKE ? "
+                + "OR author COLLATE utf8mb4_general_ci LIKE ? "
+                + "ORDER BY title, author, genre "
+                + "LIMIT " + numberData;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             String searchPattern = "%" + keyword + "%";
             pstmt.setString(1, searchPattern);
             pstmt.setString(2, searchPattern);
-            pstmt.setString(3, searchPattern);
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
@@ -151,20 +183,39 @@ public class BookService {
         Book book = null;
         String query = "SELECT * FROM books WHERE book_id = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, bookId);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                book = mapResultSetToBook(rs);
+                book = mapResultSetToBook(rs);  // Phương thức ánh xạ kết quả vào đối tượng Book
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return book;
     }
+
+    // phương thức ấy ra Id cao nhất phục vụ cho thêm sách
+    public int getLastId() {
+        String query = "SELECT MAX(book_id) as maxID FROM books;";
+
+        try (Connection conn = Database.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("maxID");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     // Phương thức ánh xạ ResultSet sang đối tượng Book
     private Book mapResultSetToBook(ResultSet rs) throws SQLException {
         return new Book(
@@ -180,14 +231,13 @@ public class BookService {
         );
     }
 
-
     // Phương thức mượn sách
     public boolean borrowBook(String account, String bookName) {
         // Kiểm tra số lượng sách còn lại
         String checkAvailabilityQuery = "SELECT available FROM books WHERE book_name = ?";
         int availableBooks = 0;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(checkAvailabilityQuery)) {
 
             pstmt.setString(1, bookName);
@@ -213,7 +263,7 @@ public class BookService {
         String getUsernameQuery = "SELECT username FROM users WHERE account = ?";
         String username = null;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(getUsernameQuery)) {
 
             pstmt.setString(1, account);
@@ -234,7 +284,7 @@ public class BookService {
         String insertBorrowQuery = "INSERT INTO borrowed_books (borrow_date, account, book_name, username) VALUES (CURRENT_DATE, ?, ?, ?)";
         String updateBookQuery = "UPDATE books SET available = available - 1 WHERE book_name = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement insertStmt = conn.prepareStatement(insertBorrowQuery);
              PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
 
@@ -262,16 +312,17 @@ public class BookService {
         // Truy vấn xóa bản ghi trong bảng borrowed_books
         String deleteBorrowQuery = "DELETE FROM borrowed_books WHERE account = ? AND book_name = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(deleteBorrowQuery)) {
 
+            System.out.println(bookName);
             pstmt.setString(1, account);
             pstmt.setString(2, bookName);
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
                 // Tăng lại số lượng sách trong bảng books
-                String updateBookQuery = "UPDATE books SET available = available + 1 WHERE book_name = ?";
+                String updateBookQuery = "UPDATE books SET available = available + 1 WHERE title = ?";
                 try (PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
                     updateStmt.setString(1, bookName);
                     updateStmt.executeUpdate();
@@ -287,11 +338,12 @@ public class BookService {
         }
     }
 
+    // Phương thức lấy tất cả sách mượn
     public List<BorrowedBook> getAllBorrowedBooks() {
         List<BorrowedBook> borrowedBooks = new ArrayList<>();
         String query = "SELECT borrow_date, account, book_name, username FROM borrowed_books";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -311,6 +363,37 @@ public class BookService {
         return borrowedBooks;
     }
 
+    // Phương thức lấy các sách được mượn kèm điều kiện
+    public List<BorrowedBook> getBorrowedBooks(String key) {
+        List<BorrowedBook> borrowedBooks = new ArrayList<>();
+        String query = "SELECT borrow_date, account, book_name, username FROM borrowed_books " +
+                "WHERE account COLLATE utf8mb4_general_ci LIKE ? " +
+                "OR book_name COLLATE utf8mb4_general_ci LIKE ? " +
+                "ORDER BY account, book_name;";
 
+        try (Connection conn = Database.getInstance().getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            String searchPattern = "%" + key + "%";
+            pstmt.setString(1, searchPattern);
+            pstmt.setString(2, searchPattern);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // Lấy dữ liệu từ ResultSet và tạo đối tượng BorrowedBook
+                Date borrowDate = rs.getDate("borrow_date");
+                String account = rs.getString("account");
+                String bookName = rs.getString("book_name");
+                String username = rs.getString("username");
+
+                // Thêm đối tượng BorrowedBook vào danh sách
+                borrowedBooks.add(new BorrowedBook(borrowDate, account, bookName, username));
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy tất cả sách đã mượn: " + e.getMessage());
+        }
+        return borrowedBooks;
+    }
 
 }
