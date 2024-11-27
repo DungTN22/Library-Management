@@ -234,7 +234,7 @@ public class BookService {
     // Phương thức mượn sách
     public boolean borrowBook(String account, String bookName) {
         // Kiểm tra số lượng sách còn lại
-        String checkAvailabilityQuery = "SELECT available FROM books WHERE book_name = ?";
+        String checkAvailabilityQuery = "SELECT available FROM books WHERE title = ?";
         int availableBooks = 0;
 
         try (Connection conn = Database.connect();
@@ -260,7 +260,7 @@ public class BookService {
         }
 
         // Lấy username từ bảng users dựa trên account
-        String getUsernameQuery = "SELECT username FROM users WHERE account = ?";
+        String getUsernameQuery = "SELECT name FROM users WHERE account = ?";
         String username = null;
 
         try (Connection conn = Database.connect();
@@ -270,7 +270,7 @@ public class BookService {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                username = rs.getString("username");
+                username = rs.getString("name");
             } else {
                 System.out.println("Tài khoản không tồn tại.");
                 return false;
@@ -282,7 +282,7 @@ public class BookService {
 
         // Tiến hành mượn sách và cập nhật số lượng sách
         String insertBorrowQuery = "INSERT INTO borrowed_books (borrow_date, account, book_name, username) VALUES (CURRENT_DATE, ?, ?, ?)";
-        String updateBookQuery = "UPDATE books SET available = available - 1 WHERE book_name = ?";
+        String updateBookQuery = "UPDATE books SET available = available - 1 WHERE title = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement insertStmt = conn.prepareStatement(insertBorrowQuery);

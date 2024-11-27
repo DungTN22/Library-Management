@@ -64,7 +64,7 @@
                                       <Font size="22.0" />
                                   </font>
                         </TextField>
-                        <Button fx:id="borrowButton" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="152.0" style="-fx-background-color: #5B9893; -fx-background-radius: 20; -fx-text-fill: white;" text="Borrow">
+                        <Button fx:id="borrowButton" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="152.0" onAction="#gotoBorrowPage" style="-fx-background-color: #5B9893; -fx-background-radius: 20; -fx-text-fill: white;" text="Borrow">
                            <font>
                               <Font name="MuseoModerno Regular" size="20.0" />
                            </font>

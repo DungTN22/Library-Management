@@ -31,6 +31,7 @@ public class HelloApplication extends Application {
         SetUp.editAddUserScene = new Scene(SetUp.editAddLoader.load(), 1080, 720);
         SetUp.userDetailsScene = new Scene(SetUp.userDetailsLoader.load(), 1080, 720);
         SetUp.bookDetailsScene = new Scene(SetUp.bookDetailsLoader.load(), 1080, 720);
+        SetUp.borrowBookPageScene = new Scene(SetUp.borrowBookPageLoader.load(), 1080, 720);
 
         SetUp.newStage = stage;
         SetUp.newStage.setResizable(false);

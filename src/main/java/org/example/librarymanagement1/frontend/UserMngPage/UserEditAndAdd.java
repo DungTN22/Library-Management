@@ -73,54 +73,6 @@ public class UserEditAndAdd implements Initializable {
     UserService userService = new UserService();
     UserManagementCell parent = null;
 
-    public TextField getNameField() {
-        return nameField;
-    }
-
-    public TextField getAccountField() {
-        return accountField;
-    }
-
-    public TextField getEmailField() {
-        return emailField;
-    }
-
-    public TextField getPhoneField() {
-        return phoneField;
-    }
-
-    public TextField getPasswordField() {
-        return passwordField;
-    }
-
-    public TextField getStatusField() {
-        return statusField;
-    }
-
-    public void setNameField(String name) {
-        this.nameField.setText(name);
-    }
-
-    public void setAccountField(String account) {
-        this.accountNotification.setText(account);
-    }
-
-    public void setEmailField(String email) {
-        this.emailNotification.setText(email);
-    }
-
-    public void setPhoneField(String phone) {
-        this.phoneNotification.setText(phone);
-    }
-
-    public void setPasswordField(String password) {
-        this.passwordNotification.setText(password);
-    }
-
-    public void setStatusField(String status) {
-        this.statusField.setText(status);
-    }
-
     public void setUser(User editUser) {
         this.editUser = editUser;
     }
@@ -196,25 +148,24 @@ public class UserEditAndAdd implements Initializable {
      */
     public void setEditUser(User user) {
         editUser = user;
-        System.out.println(user.getEmail());
-        setNameField(user.getName());
-        setAccountField(user.getAccount());
-        setEmailField(user.getEmail());
-        setPhoneField(user.getPhone());
-        setPasswordField(user.getPassword());
-        setStatusField(user.getStatus());
+        nameField.setText(user.getName());
+        emailField.setText(user.getEmail());
+        accountField.setText(user.getAccount());
+        phoneField.setText(user.getPhone());
+        passwordField.setText(user.getPassword());
+        statusField.setText(user.getStatus());
     }
 
     /**
      * dọn dẹp dữ liệu.
      */
     public void clearDataInField() {
-        setNameField("");
-        setAccountField("");
-        setEmailField("");
-        setPhoneField("");
-        setPasswordField("");
-        setStatusField("");
+        nameField.setText("");
+        emailField.setText("");
+        accountField.setText("");
+        phoneField.setText("");
+        passwordField.setText("");
+        statusField.setText("");
     }
 
     /**
