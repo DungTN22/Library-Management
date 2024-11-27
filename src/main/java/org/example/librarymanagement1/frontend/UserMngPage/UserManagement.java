@@ -57,6 +57,14 @@ public class UserManagement implements Initializable {
         SetUp.newStage.setScene(SetUp.borrowBookManageScene);
     }
 
+    @FXML
+    public void addUserPage() throws IOException {
+        UserEditAndAdd add = SetUp.editAddLoader.getController();
+        add.setType(0);
+        add.clearDataInField();
+        SetUp.newStage.setScene(SetUp.editAddUserScene);
+    }
+
     private int totalData = 0;
 
     private void setBookList(String key) {
@@ -95,7 +103,7 @@ public class UserManagement implements Initializable {
             try {
                 addCellsToTable(userList.get(totalData + i));
             } catch (NullPointerException e) {
-                System.out.println("BookManagement : " + e.getMessage());
+                System.out.println("UserManagement : " + e.getMessage());
             }
         }
         totalData += number;

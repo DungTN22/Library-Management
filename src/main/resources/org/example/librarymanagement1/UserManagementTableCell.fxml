@@ -50,7 +50,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="seeDetailButton" layoutX="20.0" layoutY="6.0" mnemonicParsing="false" onAction="#seeUserDetails" prefHeight="30.0" prefWidth="30.0" styleClass="detail_book_button" stylesheets="@Button.css">
+                <Button fx:id="seeDetailButton" layoutX="20.0" layoutY="6.0" mnemonicParsing="false" onAction="#userDetailsPage" prefHeight="30.0" prefWidth="30.0" styleClass="detail_book_button" stylesheets="@Button.css">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>

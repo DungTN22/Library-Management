@@ -15,6 +15,8 @@ public class SetUp {
     public static FXMLLoader borrowBookLoader = new FXMLLoader(Book.class.getResource("BorrowBookPage.fxml"));
     public static FXMLLoader userLoader = new FXMLLoader(Book.class.getResource("UserManagement.fxml"));
     public static FXMLLoader editAddLoader = new FXMLLoader(Book.class.getResource("EditAndAddUser.fxml"));
+    public static FXMLLoader userDetailsLoader = new FXMLLoader(Book.class.getResource("UserDetails.fxml"));
+    public static FXMLLoader bookDetailsLoader = new FXMLLoader(Book.class.getResource("BookDetails.fxml"));
 
     public static Scene homeScene;
     public static Scene searchScene;
@@ -24,11 +26,12 @@ public class SetUp {
     public static Scene borrowBookManageScene;
     public static Scene userScene;
     public static Scene editAddUserScene;
+    public static Scene userDetailsScene;
+    public static Scene bookDetailsScene;
 
     public static Thread loadPageBookThread = null;
     public static Thread loadBookManageTableThread = null;
     public static Thread loadUserManageTableThread = null;
 
     public static Stage newStage;
-
 }
