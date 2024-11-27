@@ -73,7 +73,7 @@
                             <font>
                                 <Font name="MuseoMordeno" size="14.0" />
                             </font></TextField>
-                        <Label fx:id="buttonNotification" alignment="CENTER" layoutX="835.0" layoutY="546.0" prefHeight="18.0" prefWidth="157.0" visible="false">
+                        <Label fx:id="buttonNotification" alignment="CENTER" layoutX="771.0" layoutY="546.0" prefHeight="20.0" prefWidth="272.0" textAlignment="CENTER" visible="false">
                             <font>
                                 <Font name="MuseoMordeno" size="14.0" />
                             </font>
