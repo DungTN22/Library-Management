@@ -14,7 +14,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -32,7 +32,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY year DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, topN);
@@ -52,7 +52,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY rating DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, topN);
@@ -72,7 +72,7 @@ public class BookService {
         List<Book> books = new ArrayList<>();
         String query = "SELECT * FROM books ORDER BY popularity DESC LIMIT ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, topN);
@@ -90,7 +90,7 @@ public class BookService {
     // Phương thức thêm sách mới vào cơ sở dữ liệu
     public boolean addBook(Book book) {
         String query = "INSERT INTO books (title, author, genre, year, pages, available, image_link, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, book.getTitle());
@@ -116,7 +116,7 @@ public class BookService {
                 "SET title = ?, author = ?, genre = ?, year = ?" +
                 ", pages = ?, available = ?, image_link = ?, description = ? " +
                 "WHERE book_id = ?;";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, book.getTitle());
@@ -140,7 +140,7 @@ public class BookService {
     // Phương thức xóa sách
     public boolean deleteBook(int bookId) {
         String query = "DELETE FROM books WHERE book_id = ?";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, bookId);
@@ -161,7 +161,7 @@ public class BookService {
                 + "ORDER BY title, author, genre "
                 + "LIMIT " + numberData;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             String searchPattern = "%" + keyword + "%";
@@ -183,7 +183,7 @@ public class BookService {
         Book book = null;
         String query = "SELECT * FROM books WHERE book_id = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, bookId);
@@ -202,7 +202,7 @@ public class BookService {
     public int getLastId() {
         String query = "SELECT MAX(book_id) as maxID FROM books;";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             ResultSet rs = pstmt.executeQuery();
@@ -237,7 +237,7 @@ public class BookService {
         String checkAvailabilityQuery = "SELECT available FROM books WHERE title = ?";
         int availableBooks = 0;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(checkAvailabilityQuery)) {
 
             pstmt.setString(1, bookName);
@@ -263,7 +263,7 @@ public class BookService {
         String getUsernameQuery = "SELECT name FROM users WHERE account = ?";
         String username = null;
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(getUsernameQuery)) {
 
             pstmt.setString(1, account);
@@ -284,7 +284,7 @@ public class BookService {
         String insertBorrowQuery = "INSERT INTO borrowed_books (borrow_date, account, book_name, username) VALUES (CURRENT_DATE, ?, ?, ?)";
         String updateBookQuery = "UPDATE books SET available = available - 1 WHERE title = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement insertStmt = conn.prepareStatement(insertBorrowQuery);
              PreparedStatement updateStmt = conn.prepareStatement(updateBookQuery)) {
 
@@ -312,7 +312,7 @@ public class BookService {
         // Truy vấn xóa bản ghi trong bảng borrowed_books
         String deleteBorrowQuery = "DELETE FROM borrowed_books WHERE account = ? AND book_name = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(deleteBorrowQuery)) {
 
             System.out.println(bookName);
@@ -343,7 +343,7 @@ public class BookService {
         List<BorrowedBook> borrowedBooks = new ArrayList<>();
         String query = "SELECT borrow_date, account, book_name, username FROM borrowed_books";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -371,7 +371,7 @@ public class BookService {
                 "OR book_name COLLATE utf8mb4_general_ci LIKE ? " +
                 "ORDER BY account, book_name;";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             String searchPattern = "%" + key + "%";

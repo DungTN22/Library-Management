@@ -30,7 +30,6 @@ public class ResultSearchCell implements Initializable {
         setBook(book);
         setType(mode);
         cell.setText(book.getTitle() + '-' + book.getAuthor());
-        System.out.println(type);
         if (type == 0) {
             cell.getStyleClass().remove("search_cell_even");
             cell.getStyleClass().add("search_cell_odd");

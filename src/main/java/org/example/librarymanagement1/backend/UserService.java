@@ -14,7 +14,7 @@ public class UserService {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
@@ -30,7 +30,7 @@ public class UserService {
     // Phương thức thêm người dùng mới vào cơ sở dữ liệu
     public boolean addUser(User user) {
         String query = "INSERT INTO users (name, email, phone, account, password, status) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, user.getName());
@@ -51,7 +51,7 @@ public class UserService {
     // Phương thức xóa người dùng dựa trên user_id
     public boolean deleteUser(int userId) {
         String query = "DELETE FROM users WHERE user_id = ?";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, userId);
@@ -110,7 +110,7 @@ public class UserService {
         User user = null;
         String query = "SELECT * FROM users WHERE user_id = ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, userId);
