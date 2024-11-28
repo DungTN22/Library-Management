@@ -9,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import org.example.librarymanagement1.Book;
 import org.example.librarymanagement1.backend.Images;
+import org.example.librarymanagement1.backend.SetUp;
+import org.example.librarymanagement1.frontend.BookManagementPage.BookDetails;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,6 +36,35 @@ public class HomeBookCell implements Initializable {
         // Gán sự kiện nhấn chuột vào ImageView
         imageView.setOnMouseClicked(event -> {
             System.out.println("ImageView clicked!");
+
+            try {
+                // Lấy controller của UserDetails
+                BookDetails bookDetailsController = SetUp.bookDetailsLoader.getController();
+
+                if (bookDetailsController == null) {
+                    System.out.println("Error: BookDetails controller is null.");
+                    return;
+                }
+
+                // Truyền dữ liệu người dùng vào trang chi tiết
+                bookDetailsController.setBookDetails(
+                        currebtBook.getBookId(),
+                        currebtBook.getTitle(),
+                        currebtBook.getAuthor(),
+                        currebtBook.getGenre(),
+                        currebtBook.getYear(),
+                        currebtBook.getPages(),
+                        currebtBook.isAvailable(),
+                        currebtBook.getImageLink(),
+                        currebtBook.getDescription()
+                );
+
+                // Chuyển sang trang UserDetails
+                SetUp.newStage.setScene(SetUp.bookDetailsScene);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 
