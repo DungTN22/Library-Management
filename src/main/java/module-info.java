@@ -5,6 +5,7 @@ module org.example.librarymanagement1 {
     requires com.google.gson;
     requires java.sql;
     requires java.dotenv;
+    requires java.mail;
 
     opens org.example.librarymanagement1.frontend.Home to javafx.fxml;
     opens  org.example.librarymanagement1.frontend.Other to javafx.fxml;
