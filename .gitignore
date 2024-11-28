@@ -40,3 +40,5 @@ build/
 .env
 mysql-connector-j-9.1.0.jar
 .idea/
+
+.env

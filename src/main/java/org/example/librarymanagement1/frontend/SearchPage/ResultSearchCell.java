@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import org.example.librarymanagement1.Book;
+import org.example.librarymanagement1.backend.SetUp;
+import org.example.librarymanagement1.frontend.BookManagementPage.BookDetails;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,6 +42,35 @@ public class ResultSearchCell implements Initializable {
     private void setActionClick() {
         cell.setOnMouseClicked(event -> {
             System.out.println("Label được click!");
+            System.out.println(currentBook.getTitle());
+            try {
+                // Lấy controller của UserDetails
+                BookDetails bookDetailsController = SetUp.bookDetailsLoader.getController();
+
+                if (bookDetailsController == null) {
+                    System.out.println("Error: BookDetails controller is null.");
+                    return;
+                }
+
+                // Truyền dữ liệu người dùng vào trang chi tiết
+                bookDetailsController.setBookDetails(
+                        currentBook.getBookId(),
+                        currentBook.getTitle(),
+                        currentBook.getAuthor(),
+                        currentBook.getGenre(),
+                        currentBook.getYear(),
+                        currentBook.getPages(),
+                        currentBook.isAvailable(),
+                        currentBook.getImageLink(),
+                        currentBook.getDescription()
+                );
+
+                // Chuyển sang trang UserDetails
+                SetUp.newStage.setScene(SetUp.bookDetailsScene);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
     }
 

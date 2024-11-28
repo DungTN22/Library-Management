@@ -30,7 +30,7 @@
                            <children>
                               <Label alignment="CENTER" minWidth="60.0" prefHeight="54.0" prefWidth="60.0" styleClass="table_header_background" stylesheets="@Background.css" text="ID">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                                  <opaqueInsets>
                                     <Insets />
@@ -38,27 +38,27 @@
                               </Label>
                               <Label alignment="CENTER" minWidth="145.0" prefHeight="54.0" prefWidth="145.0" styleClass="table_header_background" stylesheets="@Background.css" text="Name">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" minWidth="131.0" prefHeight="54.0" prefWidth="131.0" styleClass="table_header_background" stylesheets="@Background.css" text="Author">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" minWidth="411.0" prefHeight="54.0" prefWidth="411.0" styleClass="table_header_background" stylesheets="@Background.css" text="Description">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" minWidth="97.0" prefHeight="54.0" prefWidth="97.0" styleClass="table_header_background" stylesheets="@Background.css" text="Status">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="41.0" prefWidth="137.0" styleClass="table_header_background" stylesheets="@Background.css" text="Tool">
                                  <font>
-                                    <Font name="Times New Roman" size="22.0" />
+                                    <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
                            </children>
@@ -79,7 +79,7 @@
                      </graphic></Button>
                   <TextField fx:id="searchBookBar" layoutX="598.0" layoutY="52.0" prefHeight="40.0" prefWidth="373.0" promptText="Search with name or author" styleClass="search_bar_background1" stylesheets="@Background.css">
                      <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="MuseoMordeno" size="20.0" />
                      </font>
                   </TextField>
                   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="930.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
