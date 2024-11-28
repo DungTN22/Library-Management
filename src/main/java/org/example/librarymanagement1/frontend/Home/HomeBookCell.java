@@ -47,17 +47,7 @@ public class HomeBookCell implements Initializable {
                 }
 
                 // Truyền dữ liệu người dùng vào trang chi tiết
-                bookDetailsController.setBookDetails(
-                        currebtBook.getBookId(),
-                        currebtBook.getTitle(),
-                        currebtBook.getAuthor(),
-                        currebtBook.getGenre(),
-                        currebtBook.getYear(),
-                        currebtBook.getPages(),
-                        currebtBook.isAvailable(),
-                        currebtBook.getImageLink(),
-                        currebtBook.getDescription()
-                );
+                bookDetailsController.setBookDetails(currebtBook);
 
                 // Chuyển sang trang UserDetails
                 SetUp.newStage.setScene(SetUp.bookDetailsScene);

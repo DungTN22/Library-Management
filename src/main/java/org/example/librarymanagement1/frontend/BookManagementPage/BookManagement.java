@@ -41,11 +41,11 @@ public class BookManagement implements Initializable {
 
     BookService bookService = new BookService();
 
-    private void setBookList() {
+    public void setBookList() {
         this.bookList = bookService.getAllBooks();
     }
 
-    private void setBookList(String key) {
+    public void setBookList(String key) {
         this.bookList = bookService.searchBooks(key,200);
     }
 

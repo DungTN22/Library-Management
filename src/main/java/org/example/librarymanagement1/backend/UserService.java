@@ -68,7 +68,7 @@ public class UserService {
         String query = "UPDATE users " +
                 "SET name = ?, email = ?, phone = ?, account = ?, password = ?, status = ? " +
                 "WHERE user_id = ?;";
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, user.getName());
@@ -91,7 +91,7 @@ public class UserService {
     public int getLastId() {
         String query = "SELECT MAX(user_id) as maxID FROM users;";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             ResultSet rs = pstmt.executeQuery();
@@ -130,7 +130,7 @@ public class UserService {
         List<User> users = new ArrayList<>();
         String query = "SELECT * FROM users WHERE name LIKE ? OR email LIKE ? OR account LIKE ?";
 
-        try (Connection conn = Database.connect();
+        try (Connection conn = Database.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             String searchPattern = "%" + keyword + "%";

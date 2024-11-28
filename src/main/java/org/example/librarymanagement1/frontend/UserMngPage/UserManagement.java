@@ -77,6 +77,10 @@ public class UserManagement implements Initializable {
         this.userList = userService.getAllUsers();
     }
 
+    private void setUserList(String key) {
+        this.userList = userService.searchUser(key);
+    }
+
     /**
      * lấy ra kích thước của tất cả sách có trong database.
      *
@@ -183,8 +187,23 @@ public class UserManagement implements Initializable {
         totalData = 0;
     }
 
+    /**
+     * kiểm tra sự thay đổi của thanh searchBar
+     */
+    public void listenSearchChange() {
+        searchUserBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (searchUserBar.getText().isEmpty()) {
+                setUserList();
+            } else {
+                setUserList(searchUserBar.getText());
+            }
+            resetUserTable();
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUpUserManagePage();
+        listenSearchChange();
     }
 }

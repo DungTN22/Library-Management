@@ -87,12 +87,12 @@
     -fx-background-color: #9bffa2;
 }
 
-.add_user_button {
+.add_book_button {
     -fx-background-color: #a7cfff;
     -fx-background-radius: 10px;
 }
 
-.add_user_button:hover {
+.add_book_button:hover {
     -fx-background-color: #c2dfff;
 }
 

@@ -53,18 +53,7 @@ public class BookTypePageCell implements Initializable {
                 }
 
                 // Truyền dữ liệu người dùng vào trang chi tiết
-                bookDetailsController.setBookDetails(
-                        currentBook.getBookId(),
-                        currentBook.getTitle(),
-                        currentBook.getAuthor(),
-                        currentBook.getGenre(),
-                        currentBook.getYear(),
-                        currentBook.getPages(),
-                        currentBook.isAvailable(),
-                        currentBook.getImageLink(),
-                        currentBook.getDescription()
-                );
-
+                bookDetailsController.setBookDetails(currentBook);
                 // Chuyển sang trang UserDetails
                 SetUp.newStage.setScene(SetUp.bookDetailsScene);
 
