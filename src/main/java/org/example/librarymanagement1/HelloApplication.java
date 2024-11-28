@@ -18,6 +18,11 @@ public class HelloApplication extends Application {
         SetUp.repairAddBookScene = new Scene(SetUp.repairAddLoader.load(),1080,720);
         SetUp.allBookSameTypeScene = new Scene(SetUp.allBookSameTypeLoader.load(),1080,720);
         SetUp.borrowBookManageScene = new Scene(SetUp.borrowBookLoader.load(), 1080, 720);
+        SetUp.userScene = new Scene(SetUp.userLoader.load(), 1080, 720);
+        SetUp.editAddUserScene = new Scene(SetUp.editAddLoader.load(), 1080, 720);
+        SetUp.userDetailsScene = new Scene(SetUp.userDetailsLoader.load(), 1080, 720);
+        SetUp.bookDetailsScene = new Scene(SetUp.bookDetailsLoader.load(), 1080, 720);
+        SetUp.borrowBookPageScene = new Scene(SetUp.borrowBookPageLoader.load(), 1080, 720);
 
         SetUp.newStage = stage;
         SetUp.newStage.setResizable(false);

@@ -6,7 +6,7 @@ public class Database {
     // Thông tin kết nối cơ sở dữ liệu MySQL
     private static final String DB_URL = "jdbc:mysql://localhost:3306/library_management";
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "123conbo";
+    private static final String DB_PASSWORD = "Cuong2005@";
 
     // Singleton instance
     private static Database instance;
