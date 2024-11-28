@@ -341,7 +341,7 @@ public class BookService {
     // Phương thức lấy tất cả sách mượn
     public List<BorrowedBook> getAllBorrowedBooks() {
         List<BorrowedBook> borrowedBooks = new ArrayList<>();
-        String query = "SELECT borrow_date, account, book_name, username FROM borrowed_books";
+        String query = "SELECT borrow_date, return_date, account, book_name, username FROM borrowed_books";
 
         try (Connection conn = Database.getInstance().getConnection();
              Statement stmt = conn.createStatement();
@@ -353,7 +353,6 @@ public class BookService {
                 String account = rs.getString("account");
                 String bookName = rs.getString("book_name");
                 String username = rs.getString("username");
-
                 // Thêm đối tượng BorrowedBook vào danh sách
                 borrowedBooks.add(new BorrowedBook(borrowDate, account, bookName, username));
             }
