@@ -70,19 +70,19 @@
                         </ScrollPane>
                      </children>
                   </VBox>
-                  <Button fx:id="addBookButton" layoutX="991.0" layoutY="52.0" mnemonicParsing="false" onAction="#addBookPage" prefHeight="40.0" prefWidth="40.0" styleClass="add_book_button" stylesheets="@Button.css">
+                  <Button fx:id="addBookButton" layoutX="995.0" layoutY="44.0" mnemonicParsing="false" onAction="#addBookPage" prefHeight="40.0" prefWidth="40.0" styleClass="add_book_button" stylesheets="@Button.css">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../image/135683.png" />
                            </image></ImageView>
                      </graphic></Button>
-                  <TextField fx:id="searchBookBar" layoutX="598.0" layoutY="52.0" prefHeight="40.0" prefWidth="373.0" promptText="Search with name or author" styleClass="search_bar_background1" stylesheets="@Background.css">
+                  <TextField fx:id="searchBookBar" layoutX="598.0" layoutY="42.0" prefHeight="40.0" prefWidth="373.0" promptText="Search with name or author" styleClass="search_bar_background1" stylesheets="@Background.css">
                      <font>
                         <Font name="MuseoMordeno" size="20.0" />
                      </font>
                   </TextField>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="930.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="930.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/magnifying-glass-1083373_640.png" />
                      </image>

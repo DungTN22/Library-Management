@@ -12,22 +12,22 @@
    <children>
       <Label fx:id="borrowDateColumn" alignment="CENTER" minWidth="160.0" prefHeight="52.0" prefWidth="60.0" styleClass="table_cell_background" stylesheets="@Background.css" text="01">
          <font>
-            <Font name="Times New Roman" size="16.0" />
+            <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
       <Label fx:id="accountColumn" alignment="CENTER" minWidth="230.0" prefHeight="49.0" prefWidth="145.0" styleClass="table_cell_background" stylesheets="@Background.css" text="A">
          <font>
-            <Font name="Times New Roman" size="16.0" />
+            <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
       <Label fx:id="userNameColumn" alignment="CENTER" minWidth="230.0" prefHeight="50.0" prefWidth="131.0" styleClass="table_cell_background" stylesheets="@Background.css" text="B">
          <font>
-            <Font name="Times New Roman" size="16.0" />
+            <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
       <Label fx:id="bookNameColumn" alignment="CENTER" minWidth="290.0" prefHeight="46.0" prefWidth="411.0" styleClass="table_cell_background" stylesheets="@Background.css" text="C">
          <font>
-            <Font name="Times New Roman" size="16.0" />
+            <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
       <AnchorPane fx:id="toolColumn" minWidth="80.0" prefHeight="200.0" prefWidth="137.0" styleClass="table_cell_background" stylesheets="@Background.css">

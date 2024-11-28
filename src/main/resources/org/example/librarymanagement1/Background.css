@@ -83,7 +83,7 @@
     -fx-background-color: #eafffb;
 }
 
-.search_cell_even: hover {
+.search_cell_even:hover {
     -fx-background-color: #d5d9d7;
 }
 
@@ -91,6 +91,6 @@
     -fx-background-color: #fff;
 }
 
-.search_cell_odd: hover {
+.search_cell_odd:hover {
     -fx-background-color: #d5d9d7;
 }

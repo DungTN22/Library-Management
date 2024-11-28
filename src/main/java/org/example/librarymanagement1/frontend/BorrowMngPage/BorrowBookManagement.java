@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.example.librarymanagement1.Book;
 import org.example.librarymanagement1.BorrowedBook;
 import org.example.librarymanagement1.backend.BookService;
 import org.example.librarymanagement1.backend.SetUp;
@@ -62,7 +63,7 @@ public class BorrowBookManagement implements Initializable {
 
     @FXML
     public void goToUserManagePage() throws IOException {
-
+        SetUp.newStage.setScene(SetUp.userScene);
     }
 
     @FXML
@@ -128,6 +129,26 @@ public class BorrowBookManagement implements Initializable {
         borrowCellScrollPane.setVvalue(0);
         loadDataForTable();
         totalData = 0;
+    }
+
+    /**
+     * tao cell dữ liệu của 1 sách.
+     *
+     * @param borrowedBook dữ liệu quyển sách dùng tạo cell
+     */
+    public void addCellsToTable(BorrowedBook borrowedBook) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/librarymanagement1/BorrowBookCell.fxml"));
+            HBox hBox = fxmlLoader.load();
+
+            BorrowBookManageTableCell controller = fxmlLoader.getController();
+            Platform.runLater(() -> {
+                controller.setDetails(borrowedBook);
+                table.getChildren().add(hBox);
+            });
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void setUpBookManagePage() {

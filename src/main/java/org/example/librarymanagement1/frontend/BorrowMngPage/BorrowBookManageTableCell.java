@@ -12,6 +12,7 @@ import org.example.librarymanagement1.User;
 import org.example.librarymanagement1.backend.BookService;
 import org.example.librarymanagement1.backend.SetUp;
 import org.example.librarymanagement1.backend.UserService;
+import org.example.librarymanagement1.frontend.BookManagementPage.BookManagement;
 import org.example.librarymanagement1.frontend.Home.HomeController;
 
 public class BorrowBookManageTableCell {
@@ -38,12 +39,30 @@ public class BorrowBookManageTableCell {
 
     BookService bookService = new BookService();
 
+    public void setAccountColumn(String accountColumn) {
+        this.accountColumn.setText(accountColumn);
+    }
+
+    public void setBookNameColumn(String bookNameColumn) {
+        this.bookNameColumn.setText(bookNameColumn);
+    }
+
+    public void setBorrowDateColumn(String borrowDateColumn) {
+        this.borrowDateColumn.setText(borrowDateColumn);
+    }
+
+    public void setUserNameColumn(String userNameColumn) {
+        this.userNameColumn.setText(userNameColumn);
+    }
 
     @FXML
     public void returnBorrowBook() {
         if (bookService.returnBook(currentBorrowBook.getAccount(), currentBorrowBook.getBookName())) {
             Node parent = cell.getParent();
             if (parent instanceof VBox) {
+                BookManagement bookManagement = SetUp.bookManageLoader.getController();
+                bookManagement.setBookList();
+                bookManagement.resetBookTable();
                 VBox table = (VBox) parent;
                 table.getChildren().remove(cell);
                 System.out.println("Return successfully!");
@@ -51,6 +70,14 @@ public class BorrowBookManageTableCell {
         } else {
             System.out.println("Return failed!");
         }
+    }
+
+    public void setDetails(BorrowedBook borrowedBook) {
+        setUpData(borrowedBook);
+        setAccountColumn(borrowedBook.getAccount());
+        setBookNameColumn(borrowedBook.getBookName());
+        setBorrowDateColumn(String.valueOf(borrowedBook.getBorrowDate()));
+        setUserNameColumn(borrowedBook.getUsername());
     }
 
     public void setUpData(BorrowedBook borrowedBook) {

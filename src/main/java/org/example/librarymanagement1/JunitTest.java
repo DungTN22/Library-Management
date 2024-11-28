@@ -121,10 +121,10 @@ public class JunitTest {
 
     @Test
     public void testGetUserDetail1() {
-        User thisUser = new User(1, "Alice Johnson", "alice@example.com",
-        "1234567890", "alice_j", "pass123", "active"
+        User thisUser = new User(4, "David Brown", "david@example.com",
+        "4567890123", "david_b", "pass123", "active"
         );
-        assertEquals(thisUser, userService.getUserDetails(1));
+        assertEquals(thisUser, userService.getUserDetails(4));
     }
 
     @Test
