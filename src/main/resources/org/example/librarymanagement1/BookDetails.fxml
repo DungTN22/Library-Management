@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="720.0" maxWidth="1080.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BookManagementPage.BookDetails">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane layoutX="38.0" layoutY="151.0" prefHeight="598.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                  <AnchorPane layoutX="47.0" layoutY="102.0" minHeight="300.0" minWidth="200.0" prefHeight="445.0" prefWidth="976.0" style="-fx-background-color: #ADCAC6; -fx-background-radius: 30;">
+                     <children>
+                              <TextField fx:id="nameField" layoutX="301.0" layoutY="28.0" prefHeight="61.0" prefWidth="654.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black;" styleClass="text_data_update_background" stylesheets="@Background.css">
+                                  <font>
+                                      <Font name="System Bold" size="24.0" />
+                                  </font>
+                        </TextField>
+                              <TextField fx:id="authorField" layoutX="387.0" layoutY="122.0" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black;" styleClass="text_data_update_background" stylesheets="@Background.css">
+                                  <font>
+                                      <Font size="22.0" />
+                                  </font>
+                        </TextField>
+                              <Label layoutX="319.0" layoutY="89.0" prefHeight="32.0" prefWidth="92.0" style="-fx-text-fill: black;" text="Book ID:">
+                                  <font>
+                                      <Font name="MuseoMordeno" size="22.0" />
+                                  </font>
+                              </Label>
+                              <ScrollPane fitToWidth="true" layoutX="313.0" layoutY="244.0" pannable="true" prefHeight="122.0" prefWidth="616.0" styleClass="scroll-pane" stylesheets="@TextArea.css">
+                                  <content>
+                                      <Label fx:id="descriptionLabel" style="-fx-background-color: transparent;" styleClass="label" stylesheets="@TextArea.css" wrapText="true" />
+                                  </content>
+                              </ScrollPane>
+                              <Label layoutX="319.0" layoutY="169.0" style="-fx-text-fill: black;" text="Genre:">
+                                  <font>
+                                      <Font name="MuseoMordeno" size="22.0" />
+                                  </font>
+                              </Label>
+                              <Label layoutX="319.0" layoutY="129.0" style="-fx-text-fill: black;" text="Author:">
+                                  <font>
+                                      <Font name="MuseoMordeno" size="22.0" />
+                                  </font>
+                              </Label>
+                              <Label layoutX="319.0" layoutY="209.0" style="-fx-text-fill: black;" text="Description:">
+                                  <font>
+                                      <Font name="MuseoMordeno" size="22.0" />
+                                  </font>
+                              </Label>
+                              <TextField fx:id="bookIDField" layoutX="395.0" layoutY="82.0" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black;" styleClass="text_data_update_background" stylesheets="@Background.css">
+                                  <font>
+                                      <Font size="22.0" />
+                                  </font>
+                        </TextField>
+                              <TextField fx:id="genreField" layoutX="379.0" layoutY="162.0" prefHeight="30.0" prefWidth="310.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-text-fill: black;" styleClass="text_data_update_background" stylesheets="@Background.css">
+                                  <font>
+                                      <Font size="22.0" />
+                                  </font>
+                        </TextField>
+                        <Button fx:id="borrowButton" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="152.0" onAction="#gotoBorrowPage" style="-fx-background-color: #5B9893; -fx-background-radius: 20; -fx-text-fill: white;" text="Borrow">
+                           <font>
+                              <Font name="MuseoModerno Regular" size="20.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+                        <AnchorPane layoutX="122.0" layoutY="150.0" minHeight="300.0" minWidth="200.0" prefHeight="320.0" prefWidth="200.0" styleClass="text_data_update_background" stylesheets="@Background.css">
+                     <children>
+                        <ImageView fx:id="bookImage" fitHeight="320.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                        <Label fx:id="title" alignment="CENTER" layoutX="-0.8" layoutY="40.0" prefHeight="46.0" prefWidth="260.0" styleClass="topic_background" stylesheets="@Background.css" text="User Details" textAlignment="RIGHT" textFill="WHITE">
+                            <font>
+                                <Font name="MuseoModerno" size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">
+                    <children>
+                        <AnchorPane minHeight="121.0" prefHeight="122.0" prefWidth="1085.0">
+                            <children>
+                                <Button fx:id="homeMenuButton" layoutX="60.0" layoutY="37.0" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="58.0" prefWidth="120.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="searchMenuButton" layoutX="240.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="58.0" prefWidth="128.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Search" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="bookmanageMenuButton" layoutX="420.0" layoutY="45.0" mnemonicParsing="false" onAction="#goToBookManagePage" prefHeight="58.0" prefWidth="110.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Book" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="usermanageMenuButton" layoutX="580.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserManagePage" prefHeight="58.0" prefWidth="100.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="User" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <AnchorPane layoutX="949.0" layoutY="24.0" prefHeight="78.0" prefWidth="98.0" styleClass="logo_user_background" stylesheets="@Background.css">
+                                    <children>
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="19.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0">
+                                            <image>
+                                                <Image url="@../../../image/solar.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

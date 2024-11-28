@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.UserMngPage.UserManagement">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <AnchorPane layoutX="6.0" layoutY="135.0" prefHeight="595.0" prefWidth="1080.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="124.0">
+                    <children>
+                        <Label alignment="CENTER" layoutX="-0.8" layoutY="40.0" prefHeight="47.0" prefWidth="215.0" styleClass="topic_background" stylesheets="@Background.css" text="List Users" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="-1.0">
+                            <font>
+                                <Font name="MuseoModerno" size="30.0" />
+                            </font>
+                        </Label>
+                        <VBox layoutX="41.0" layoutY="99.0" prefHeight="426.0" prefWidth="995.0" stylesheets="@Background.css" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="100.0">
+                            <children>
+                                <HBox prefHeight="41.0" prefWidth="994.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css">
+                                    <children>
+                                        <Label alignment="CENTER" minWidth="60.0" prefHeight="54.0" prefWidth="60.0" styleClass="table_header_background" stylesheets="@Background.css" text="ID">
+                                            <font>
+                                                <Font name="MuseoMordeno" size="22.0" />
+                                            </font>
+                                            <opaqueInsets>
+                                                <Insets />
+                                            </opaqueInsets>
+                                        </Label>
+                                        <Label alignment="CENTER" minWidth="145.0" prefHeight="41.0" prefWidth="220.0" styleClass="table_header_background" stylesheets="@Background.css" text="Name">
+                                            <font>
+                                                <Font name="MuseoMordeno" size="22.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" minWidth="131.0" prefHeight="41.0" prefWidth="258.0" styleClass="table_header_background" stylesheets="@Background.css" text="Account">
+                                            <font>
+                                                <Font name="MuseoMordeno" size="22.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" minWidth="326.0" prefHeight="41.0" prefWidth="326.0" styleClass="table_header_background" stylesheets="@Background.css" text="Email">
+                                            <font>
+                                                <Font name="MuseoMordeno" size="22.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="249.0" styleClass="table_header_background" stylesheets="@Background.css" text="Tool">
+                                            <font>
+                                                <Font name="MuseoMordeno" size="22.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </HBox>
+                                <ScrollPane fx:id="userCellScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="386.0" prefWidth="994.0" styleClass="scroll_bar_background" stylesheets="@ScrollBar.css">
+                                    <content>
+                                        <VBox fx:id="table" prefHeight="382.0" prefWidth="995.0" />
+                                    </content>
+                                </ScrollPane>
+                            </children>
+                        </VBox>
+                        <Button fx:id="addUserButton" layoutX="995.0" layoutY="44.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" onAction="#addUserPage" styleClass="add_book_button" stylesheets="@Button.css">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../image/135683.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic></Button>
+                        <TextField fx:id="searchUserBar" layoutX="598.0" layoutY="42.0" prefHeight="40.0" prefWidth="373.0" promptText="Search with name or account" styleClass="search_bar_background1" stylesheets="@Background.css">
+                            <font>
+                                <Font name="MuseoMordeno" size="20.0" />
+                            </font>
+                        </TextField>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="930.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../image/magnifying-glass-1083373_640.png" />
+                            </image>
+                        </ImageView>
+                    </children></AnchorPane>
+                <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">
+                    <children>
+                        <AnchorPane minHeight="121.0" prefHeight="122.0" prefWidth="1085.0">
+                            <children>
+                                <Button fx:id="homeMenuButton" layoutX="60.0" layoutY="37.0" mnemonicParsing="false" onAction="#goToHomePage" prefHeight="58.0" prefWidth="120.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Home" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="searchMenuButton" layoutX="240.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToSearchPage" prefHeight="58.0" prefWidth="128.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Search" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="bookmanageMenuButton" layoutX="420.0" layoutY="45.0" mnemonicParsing="false" onAction="#goToBookManagePage" prefHeight="58.0" prefWidth="110.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Book" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="usermanageMenuButton" layoutX="580.0" layoutY="41.0" mnemonicParsing="false" onAction="#goToUserManagePage" prefHeight="58.0" prefWidth="100.0" styleClass="menu_button_main" stylesheets="@Button.css" text="User" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                                <AnchorPane layoutX="949.0" layoutY="24.0" prefHeight="78.0" prefWidth="98.0" styleClass="logo_user_background" stylesheets="@Background.css">
+                                    <children>
+                                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="19.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0">
+                                            <image>
+                                                <Image url="@../../../image/solar.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </AnchorPane>
+                                <Button fx:id="borrowmanageMenuButton" layoutX="730.0" layoutY="33.0" minHeight="58.0" mnemonicParsing="false" onAction="#goToBorrowManagePage" prefHeight="58.0" prefWidth="140.0" styleClass="menu_button_normal" stylesheets="@Button.css" text="Borrow" textFill="WHITE" AnchorPane.bottomAnchor="32.0" AnchorPane.topAnchor="32.0">
+                                    <font>
+                                        <Font name="MuseoModerno Light" size="28.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
