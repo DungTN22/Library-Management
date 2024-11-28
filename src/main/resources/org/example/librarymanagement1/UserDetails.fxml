@@ -35,7 +35,7 @@
                             </font>
                         </Label>
                         <AnchorPane layoutX="75.0" layoutY="173.0" minHeight="300.0" minWidth="200.0" prefHeight="320.0" prefWidth="200.0" styleClass="text_data_update_background" stylesheets="@Background.css" />
-                        <Label fx:id="title" alignment="CENTER" layoutY="20.0" prefHeight="46.0" prefWidth="260.0" styleClass="topic_background" stylesheets="@Background.css" text="User Details" textAlignment="RIGHT" textFill="WHITE">
+                        <Label fx:id="title" alignment="CENTER" layoutX="-0.8" layoutY="40.0" prefHeight="47.0" prefWidth="215.0" styleClass="topic_background" stylesheets="@Background.css" text="User Details" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="MuseoModerno" size="30.0" />
                             </font>
