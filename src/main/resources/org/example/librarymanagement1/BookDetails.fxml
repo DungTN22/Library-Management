@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="720.0" maxWidth="1080.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BookManagementPage.BookDetails">
+<StackPane maxHeight="720.0" maxWidth="1080.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BookManagementPage.BookDetails">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
@@ -64,7 +64,7 @@
                                       <Font size="22.0" />
                                   </font>
                         </TextField>
-                        <Button fx:id="borrowButton" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="152.0" onAction="#gotoBorrowPage" style="-fx-background-color: #5B9893; -fx-background-radius: 20; -fx-text-fill: white;" text="Borrow">
+                        <Button fx:id="borrowButton" layoutX="100.0" layoutY="380.0" mnemonicParsing="false" onAction="#gotoBorrowPage" prefHeight="20.0" prefWidth="152.0" style="-fx-background-color: #5B9893; -fx-background-radius: 20; -fx-text-fill: white;" text="Borrow">
                            <font>
                               <Font name="MuseoModerno Regular" size="20.0" />
                            </font>
@@ -80,6 +80,10 @@
                                 <Font name="MuseoModerno" size="30.0" />
                             </font>
                         </Label>
+                  <Label layoutX="440.0" layoutY="22.0" prefHeight="48.0" prefWidth="310.0" />
+                  <Label layoutX="450.0" layoutY="32.0" prefHeight="48.0" prefWidth="310.0" />
+                  <Label layoutX="450.0" layoutY="32.0" prefHeight="48.0" prefWidth="310.0" />
+                  <Label layoutX="450.0" layoutY="32.0" prefHeight="48.0" prefWidth="310.0" />
                     </children>
                 </AnchorPane>
                 <HBox minHeight="121.0" prefHeight="121.0" prefWidth="1080.0" styleClass="menu_bar_background" stylesheets="@Background.css">

@@ -183,6 +183,7 @@ public class UserManagement implements Initializable {
     public void resetUserTable() {
         userCellScrollPane.setVvalue(0);
         table.getChildren().clear();
+        userList = userService.getAllUsers();
         loadDataForTable();
         totalData = 0;
     }
