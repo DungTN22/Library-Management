@@ -181,12 +181,18 @@ public class UserManagement implements Initializable {
     }
 
     public void resetUserTable() {
-        userCellScrollPane.setVvalue(0);
-        table.getChildren().clear();
-        userList = userService.getAllUsers();
-        loadDataForTable();
-        totalData = 0;
+        Platform.runLater(() -> {
+            userCellScrollPane.setVvalue(0); // Reset thanh cuộn
+            table.getChildren().clear();    // Xóa tất cả các cell
+            if (userList != null && !userList.isEmpty()) {
+                totalData = 0;
+                loadDataForTable(); // Load dữ liệu từ danh sách mới
+            } else {
+                System.out.println("Danh sách người dùng trống!");
+            }
+        });
     }
+
 
     /**
      * kiểm tra sự thay đổi của thanh searchBar
@@ -196,7 +202,7 @@ public class UserManagement implements Initializable {
             if (searchUserBar.getText().isEmpty()) {
                 setUserList();
             } else {
-                setUserList(searchUserBar.getText());
+                setUserList(newValue);
             }
             resetUserTable();
         });
