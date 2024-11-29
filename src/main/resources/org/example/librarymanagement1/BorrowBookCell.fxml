@@ -8,29 +8,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="cell" minWidth="40.0" prefHeight="40.0" prefWidth="1000.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManageTableCell">
+<HBox fx:id="cell" minWidth="40.0" prefHeight="40.0" prefWidth="1000.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManageTableCell">
    <children>
-      <Label fx:id="borrowDateColumn" alignment="CENTER" minWidth="160.0" prefHeight="52.0" prefWidth="60.0" styleClass="table_cell_background" stylesheets="@Background.css" text="01">
+      <Label fx:id="borrowDateColumn" alignment="CENTER" minWidth="150.0" prefHeight="52.0" prefWidth="60.0" styleClass="table_cell_background" stylesheets="@Background.css" text="01">
          <font>
             <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="accountColumn" alignment="CENTER" minWidth="230.0" prefHeight="49.0" prefWidth="145.0" styleClass="table_cell_background" stylesheets="@Background.css" text="A">
+      <Label fx:id="returnColumn" alignment="CENTER" minWidth="150.0" prefHeight="49.0" prefWidth="145.0" styleClass="table_cell_background" stylesheets="@Background.css" text="G">
          <font>
             <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="userNameColumn" alignment="CENTER" minWidth="230.0" prefHeight="50.0" prefWidth="131.0" styleClass="table_cell_background" stylesheets="@Background.css" text="B">
+      <Label fx:id="accountColumn" alignment="CENTER" minWidth="160.0" prefHeight="49.0" prefWidth="145.0" styleClass="table_cell_background" stylesheets="@Background.css" text="A">
          <font>
             <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="bookNameColumn" alignment="CENTER" minWidth="290.0" prefHeight="46.0" prefWidth="411.0" styleClass="table_cell_background" stylesheets="@Background.css" text="C">
+      <Label fx:id="userNameColumn" alignment="CENTER" minWidth="160.0" prefHeight="50.0" prefWidth="131.0" styleClass="table_cell_background" stylesheets="@Background.css" text="B">
          <font>
             <Font name="MuseoMordeno" size="16.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="toolColumn" minWidth="80.0" prefHeight="200.0" prefWidth="137.0" styleClass="table_cell_background" stylesheets="@Background.css">
+      <Label fx:id="bookNameColumn" alignment="CENTER" minWidth="290.0" prefHeight="46.0" prefWidth="290.0" styleClass="table_cell_background" stylesheets="@Background.css" text="C">
+         <font>
+            <Font name="MuseoMordeno" size="16.0" />
+         </font>
+      </Label>
+      <AnchorPane fx:id="toolColumn" minWidth="77.0" prefHeight="200.0" prefWidth="77.0" styleClass="table_cell_background" stylesheets="@Background.css">
          <children>
             <Button fx:id="returnBookButton" layoutX="24.0" layoutY="2.0" mnemonicParsing="false" onAction="#returnBorrowBook" prefHeight="30.0" prefWidth="30.0" styleClass="delete_book_button" stylesheets="@Button.css" AnchorPane.bottomAnchor="4.5" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="4.5">
                <graphic>
