@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BookManagementPage.BookManagement">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BookManagementPage.BookManagement">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -51,7 +51,7 @@
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" minWidth="97.0" prefHeight="54.0" prefWidth="97.0" styleClass="table_header_background" stylesheets="@Background.css" text="Status">
+                              <Label alignment="CENTER" minWidth="97.0" prefHeight="54.0" prefWidth="97.0" styleClass="table_header_background" stylesheets="@Background.css" text="Remain">
                                  <font>
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>

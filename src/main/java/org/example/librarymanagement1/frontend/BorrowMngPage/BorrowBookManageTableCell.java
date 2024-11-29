@@ -23,6 +23,9 @@ public class BorrowBookManageTableCell {
     private Label accountColumn;
 
     @FXML
+    private Label returnColumn;
+
+    @FXML
     private Label bookNameColumn;
 
     @FXML
@@ -89,6 +92,7 @@ public class BorrowBookManageTableCell {
         bookNameColumn.setText(currentBorrowBook.getBookName());
         accountColumn.setText(currentBorrowBook.getAccount());
         borrowDateColumn.setText(String.valueOf(currentBorrowBook.getBorrowDate()));
+        returnColumn.setText(String.valueOf(currentBorrowBook.getReturnDate()));
     }
 
 }

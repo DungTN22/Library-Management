@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManagement">
+<StackPane maxHeight="720.0" maxWidth="1080.0" minHeight="720.0" minWidth="1080.0" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManagementTableCell">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -26,9 +26,9 @@
                   </Label>
                   <VBox layoutX="20.0" layoutY="110.0" minWidth="1000.0" prefHeight="426.0" prefWidth="1000.0" stylesheets="@Background.css" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0">
                      <children>
-                        <HBox prefHeight="41.0" prefWidth="994.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css">
+                        <HBox maxWidth="1000.0" minWidth="1000.0" prefHeight="41.0" prefWidth="994.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css">
                            <children>
-                              <Label alignment="CENTER" minWidth="160.0" prefHeight="41.0" prefWidth="160.0" styleClass="table_header_background" stylesheets="@Background.css" text="Borrow date">
+                              <Label alignment="CENTER" minWidth="150.0" prefHeight="41.0" prefWidth="150.0" styleClass="table_header_background" stylesheets="@Background.css" text="Borrow date">
                                  <font>
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
@@ -36,12 +36,17 @@
                                     <Insets />
                                  </opaqueInsets>
                               </Label>
-                              <Label alignment="CENTER" minWidth="230.0" prefHeight="41.0" prefWidth="230.0" styleClass="table_header_background" stylesheets="@Background.css" text="Account">
+                              <Label alignment="CENTER" minWidth="150.0" prefHeight="41.0" prefWidth="140.0" styleClass="table_header_background" stylesheets="@Background.css" text="Return date">
                                  <font>
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" minWidth="230.0" prefHeight="41.0" prefWidth="230.0" styleClass="table_header_background" stylesheets="@Background.css" text="Username">
+                              <Label alignment="CENTER" minWidth="160.0" prefHeight="41.0" prefWidth="150.0" styleClass="table_header_background" stylesheets="@Background.css" text="Account">
+                                 <font>
+                                    <Font name="MuseoMordeno" size="22.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" minWidth="160.0" prefHeight="41.0" prefWidth="150.0" styleClass="table_header_background" stylesheets="@Background.css" text="Username">
                                  <font>
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
@@ -51,7 +56,7 @@
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" minWidth="80.0" prefHeight="41.0" prefWidth="80.0" styleClass="table_header_background" stylesheets="@Background.css" text="Return">
+                              <Label alignment="CENTER" minWidth="77.0" prefHeight="41.0" prefWidth="80.0" styleClass="table_header_background" stylesheets="@Background.css" text="Return">
                                  <font>
                                     <Font name="MuseoMordeno" size="22.0" />
                                  </font>
