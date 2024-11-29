@@ -17,6 +17,7 @@ import org.example.librarymanagement1.BorrowedBook;
 import org.example.librarymanagement1.backend.BookService;
 import org.example.librarymanagement1.backend.Images;
 import org.example.librarymanagement1.backend.SetUp;
+import org.example.librarymanagement1.frontend.BookManagementPage.BookManagement;
 import org.example.librarymanagement1.frontend.BookManagementPage.BookManagementTableCell;
 
 import java.io.IOException;
@@ -161,8 +162,10 @@ public class BorrowBookPage implements Initializable {
         if (isSuccess) {
             showNotification(true, buttonNotification, "Borrowed book successfully!");
             BorrowBookManagement borrowBookManagement = SetUp.borrowBookLoader.getController();
+            BookManagement bookManagement = SetUp.bookManageLoader.getController();
             BorrowedBook borrowedBook = new BorrowedBook(date, account, currentBook.getTitle(), username);
-            borrowBookManagement.addCellsToTable(borrowedBook);
+            borrowBookManagement.setUpBookManagePage();
+            bookManagement.setUpBookManagePage();
 
             // Reset các trường thông tin (nếu cần)
             usernameField.clear();

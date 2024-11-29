@@ -1,4 +1,4 @@
-module org.example.librarymanagement1 {
+module org.example.librarymanagement {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;

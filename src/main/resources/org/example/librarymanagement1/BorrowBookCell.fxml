@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="cell" minWidth="40.0" prefHeight="40.0" prefWidth="1000.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManageTableCell">
+<HBox fx:id="cell" minWidth="40.0" prefHeight="40.0" prefWidth="1000.0" spacing="2.0" styleClass="table_distance_background" stylesheets="@Background.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookManageTableCell">
    <children>
       <Label fx:id="borrowDateColumn" alignment="CENTER" minWidth="150.0" prefHeight="52.0" prefWidth="60.0" styleClass="table_cell_background" stylesheets="@Background.css" text="01">
          <font>

@@ -179,7 +179,7 @@ public class BookManagement implements Initializable {
         return visibleBounds.intersects(nodeBounds);
     }
 
-    private void setUpBookManagePage() {
+    public void setUpBookManagePage() {
         setBookList();
         resetBookTable();
         setupScrollListener();
