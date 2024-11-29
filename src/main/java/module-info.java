@@ -1,9 +1,11 @@
 module org.example.librarymanagement1 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
     requires com.google.gson;
     requires java.sql;
     requires java.dotenv;
+    requires java.mail;
     requires javafx.graphics;
     requires junit;
 
