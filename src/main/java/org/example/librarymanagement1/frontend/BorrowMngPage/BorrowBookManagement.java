@@ -151,7 +151,7 @@ public class BorrowBookManagement implements Initializable {
         }
     }
 
-    private void setUpBookManagePage() {
+    public void setUpBookManagePage() {
         setBorrowedBookList();
         resetBookTable();
         setupScrollListener();
