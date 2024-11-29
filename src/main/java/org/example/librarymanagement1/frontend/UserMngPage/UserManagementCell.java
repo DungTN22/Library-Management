@@ -67,24 +67,6 @@ public class UserManagementCell implements Initializable {
         edit.setEditUser(currentUser);
         SetUp.newStage.setScene(SetUp.editAddUserScene);
     }
-    /*
-    @FXML
-    public void userDetailsPage() {
-        System.out.println("Current user: " + currentUser);
-
-        UserManagement userManagement = SetUp.userLoader.getController();
-        userManagement.resetUserTable();
-
-        UserEditAndAdd see = SetUp.userDetailsLoader.getController();
-        if (see == null) {
-            System.out.println("Error: UserDetails controller is null.");
-            return;
-        }
-        see.clearDataInField();
-        see.setParent(this);
-        SetUp.newStage.setScene(SetUp.userDetailsScene);
-    }
-     */
 
     @FXML
     public void userDetailsPage() {

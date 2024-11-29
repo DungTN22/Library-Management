@@ -180,9 +180,6 @@ public class UserEditAndAdd implements Initializable {
                 UserManagement userManagement = SetUp.userLoader.getController();
                 userManagement.addCellsToTable(newUser);
 
-                HomeController home = SetUp.homeLoader.getController();
-                home.reLoadHomePage();
-
                 showNotification(true, buttonNotification, "Add Successfully!");
 
                 return;

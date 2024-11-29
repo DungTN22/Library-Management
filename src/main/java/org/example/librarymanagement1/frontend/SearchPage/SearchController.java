@@ -100,17 +100,41 @@ public class SearchController implements Initializable {
     public void searchData() {
         cellResultSearch.getChildren().clear();
         String textSearch = searchBar.getText();
-        List<Book> books;
         if (!textSearch.isEmpty()) {
             if (loadBookMode) {
-                books = bookService.searchBooks(textSearch, 10);
+                searchWithLocal(textSearch);
             } else {
-                books = ggBookAPI.searchBookngoai(textSearch);
-                bookListApi = books;
+                searchWithApi(textSearch);
             }
         } else {
-            books = new ArrayList<>();
+            Thread thread = new Thread(() -> {
+                Platform.runLater(() -> {
+                    bookListApi = new ArrayList<>();
+                });
+            });
+            thread.setDaemon(true);
+            thread.start();
         }
+    }
+
+    private void searchWithLocal(String textSearch) {
+        bookListApi = bookService.searchBooks(textSearch, 10);
+        loadCellSearch(bookListApi);
+    }
+
+    private void searchWithApi(String textSearch) {
+        Thread thread = new Thread(() -> {
+            bookListApi = ggBookAPI.searchBookngoai(textSearch);
+            Platform.runLater(() -> loadCellSearch(bookListApi));
+            }
+        );
+
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    private void loadCellSearch(List<Book> books) {
+        cellResultSearch.getChildren().clear();
         for (int i = 0 ; i < books.size(); i++) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/librarymanagement1/ResultSearchCell.fxml"));
@@ -118,6 +142,9 @@ public class SearchController implements Initializable {
                 ResultSearchCell resultSearchCell = fxmlLoader.getController();
                 resultSearchCell.setCell(i % 2, books.get(i));
                 cellResultSearch.getChildren().add(label);
+                if (bookListApi.isEmpty()) {
+                    cellResultSearch.getChildren().clear();
+                }
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
