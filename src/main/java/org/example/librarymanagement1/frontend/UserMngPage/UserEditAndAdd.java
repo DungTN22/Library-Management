@@ -14,6 +14,7 @@ import javafx.util.Duration;
 import org.example.librarymanagement1.User;
 import org.example.librarymanagement1.backend.SetUp;
 import org.example.librarymanagement1.backend.UserService;
+import org.example.librarymanagement1.frontend.BookManagementPage.BookManagement;
 import org.example.librarymanagement1.frontend.Home.HomeController;
 
 
@@ -198,6 +199,9 @@ public class UserEditAndAdd implements Initializable {
             User newUser = new User(editUser.getUserId(),nameField.getText(),emailField.getText(),phoneField.getText(),
                     accountField.getText(), passwordField.getText(), "active");
             if (userService.updateUser(newUser)) {
+                UserManagement userManagement = SetUp.userLoader.getController();
+                userManagement.setUserList();
+                userManagement.resetUserTable();
                 parent.updateValueUserCell(newUser);
                 showNotification(true, buttonNotification, "Edit Successfully!");
                 return;

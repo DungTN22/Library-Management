@@ -73,11 +73,11 @@ public class UserManagement implements Initializable {
 
     UserService userService = new UserService();
 
-    private void setUserList() {
+    public void setUserList() {
         this.userList = userService.getAllUsers();
     }
 
-    private void setUserList(String key) {
+    public void setUserList(String key) {
         this.userList = userService.searchUser(key);
     }
 
