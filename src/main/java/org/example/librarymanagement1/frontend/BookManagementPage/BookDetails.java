@@ -22,16 +22,16 @@ public class BookDetails implements Initializable {
 
     // Các trường TextField sẽ hiển thị dữ liệu book
     @FXML
-    private TextField nameField;
+    private Label nameField;
 
     @FXML
-    private TextField bookIDField;
+    private Label bookIDField;
 
     @FXML
-    private TextField authorField;
+    private Label authorField;
 
     @FXML
-    private TextField genreField;
+    private Label genreField;
 
     @FXML
     private Label descriptionLabel;
