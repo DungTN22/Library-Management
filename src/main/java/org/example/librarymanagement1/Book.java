@@ -1,4 +1,5 @@
 package org.example.librarymanagement1;
+import java.util.Objects;
 
 public class Book {
     private int bookId;
@@ -61,5 +62,25 @@ public class Book {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    // Override equals and hashCode
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return bookId == book.bookId && year == book.year
+                && pages == book.pages
+                && Objects.equals(title, book.title)
+                && Objects.equals(author, book.author)
+                && Objects.equals(genre, book.genre)
+                && Objects.equals(imageLink, book.imageLink)
+                && Objects.equals(description, book.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bookId, title, author, genre, year, pages, imageLink, description);
     }
 }
