@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import org.example.librarymanagement1.Book;
 import org.example.librarymanagement1.backend.Images;
 import org.example.librarymanagement1.backend.SetUp;
 import org.example.librarymanagement1.frontend.BorrowMngPage.BorrowBookPage;
@@ -71,15 +72,17 @@ public class BookDetails implements Initializable {
 
     String imageLink;
 
+    private Book currentBook;
+
     // Phương thức này nhận dữ liệu book từ controller trước đó và điền vào các TextField
-    public void setBookDetails(int id, String title, String author, String genre, int year, int pages, int available, String imageLink, String description) {
-        nameField.setText(title);
-        bookIDField.setText(String.valueOf(id));
-        authorField.setText(author);
-        genreField.setText(genre);
-        descriptionLabel.setText(description);
-        this.imageLink = imageLink;
-        Images.setImage(imageLink, bookImage, 200, 320);
+    public void setBookDetails(Book book) {
+        nameField.setText(book.getTitle());
+        bookIDField.setText(String.valueOf(book.getBookId()));
+        authorField.setText(book.getAuthor());
+        genreField.setText(book.getGenre());
+        descriptionLabel.setText(book.getDescription());
+        Images.setImage(book.getImageLink(), bookImage, 200, 320);
+        currentBook = book;
     }
 
     @FXML
@@ -91,7 +94,7 @@ public class BookDetails implements Initializable {
             BorrowBookPage borrowBookPageController = SetUp.borrowBookPageLoader.getController();
 
             // Truyền tên sách sang BorrowBookPage
-            borrowBookPageController.setBookDetails(bookName, imageLink);
+            borrowBookPageController.setBookDetails(currentBook);
 
             // Hiển thị giao diện mượn sách
             SetUp.newStage.setScene(SetUp.borrowBookPageScene);

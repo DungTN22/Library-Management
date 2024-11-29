@@ -47,7 +47,7 @@ public class UserManagementCell implements Initializable {
         if (userService.deleteUser(currentUser.getUserId())) {
             Node parent = cell.getParent();
             if (parent instanceof VBox) {
-                UserManagementCell user = SetUp.userLoader.getController();
+                //UserManagementCell user = SetUp.userLoader.getController();
                 VBox table = (VBox) parent;
                 table.getChildren().remove(cell);
                 System.out.println("Clear successfully!");
@@ -69,9 +69,37 @@ public class UserManagementCell implements Initializable {
     }
 
     @FXML
-    public void seeUserDetails() {
-        UserManagement userManagement = SetUp.userLoader.getController();
-        userManagement.resetUserTable();
+    public void userDetailsPage() {
+        if (currentUser == null) {
+            System.out.println("No user selected!");
+            return;
+        }
+
+        try {
+            // Lấy controller của UserDetails
+            UserDetails userDetailsController = SetUp.userDetailsLoader.getController();
+
+            if (userDetailsController == null) {
+                System.out.println("Error: UserDetails controller is null.");
+                return;
+            }
+
+            // Truyền dữ liệu người dùng vào trang chi tiết
+            userDetailsController.setUserDetails(
+                    currentUser.getName(),
+                    currentUser.getEmail(),
+                    currentUser.getAccount(),
+                    currentUser.getPhone(),
+                    currentUser.getPassword(),
+                    currentUser.getStatus()
+            );
+
+            // Chuyển sang trang UserDetails
+            SetUp.newStage.setScene(SetUp.userDetailsScene);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

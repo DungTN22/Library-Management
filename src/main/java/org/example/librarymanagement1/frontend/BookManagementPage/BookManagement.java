@@ -41,11 +41,11 @@ public class BookManagement implements Initializable {
 
     BookService bookService = new BookService();
 
-    private void setBookList() {
+    public void setBookList() {
         this.bookList = bookService.getAllBooks();
     }
 
-    private void setBookList(String key) {
+    public void setBookList(String key) {
         this.bookList = bookService.searchBooks(key,200);
     }
 
@@ -66,6 +66,7 @@ public class BookManagement implements Initializable {
 
     @FXML
     public void goToUserManagePage() throws IOException {
+        SetUp.newStage.setScene(SetUp.userScene);
     }
 
     @FXML

@@ -72,7 +72,10 @@ public class BookTypePage implements Initializable {
 
     @FXML
     public void goToUserManagePage() throws IOException {
-
+        if (!SetUp.loadPageBookThread.isAlive()) {
+            SetUp.loadPageBookThread.interrupt();
+        }
+        SetUp.newStage.setScene(SetUp.userScene);
     }
 
     @FXML

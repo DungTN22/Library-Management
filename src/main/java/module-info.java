@@ -6,6 +6,8 @@ module org.example.librarymanagement1 {
     requires java.sql;
     requires java.dotenv;
     requires java.mail;
+    requires javafx.graphics;
+    requires junit;
 
     opens org.example.librarymanagement1.frontend.Home to javafx.fxml;
     opens  org.example.librarymanagement1.frontend.Other to javafx.fxml;
